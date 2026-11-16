@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Nicklas Karpaty, FSF — Cinematographer / DoP, Gothenburg</title>
+  <meta name="description" content="Nicklas Karpaty, FSF — cinematographer and director of photography based in Gothenburg. Drama, documentary, branded films and virtual production.">
+  <link rel="canonical" href="https://www.nicklaskarpaty.com/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,400&family=IBM+Plex+Mono:wght@400&family=Jost:wght@200;300;400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* UTKAST D: Premium.
+       Idé: arbetet först, hantverket i detaljerna. Besökaren styr ljuset över filmen (Nordic Light),
+       väljer genre inom en skärm, och ser hela scener i stället för montage.
+       Svart + koppar från brandboken, ett ljust "papper" för About som andningspaus.
+       Jost (Futura-lik) för rubriker, Montserrat (Gotham-lik) för text, Bodoni kursiv endast för citat. */
+    :root {
+      --black: #000; --carbon: #0b0a09; --ink: #f2ede6; --dim: #a09a91; --mute: #6f6a63; --line: rgba(242,237,230,.14);
+      --copper: #b87333; --copper-hi: #d19a66; --paper: #e9e4db; --paper-ink: #12110f; --paper-dim: #5c5850;
+      --head: "Jost", "Futura", sans-serif; --body: "Montserrat", "Gotham", system-ui, sans-serif;
+      --quote: "Bodoni Moda", "Didot", serif; --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --gutter: clamp(20px, 4.4vw, 72px); --maxw: 1680px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--black); color: var(--dim); font: 300 16px/1.7 var(--body); -webkit-font-smoothing: antialiased; }
+    body::before { content: ""; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: .045;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    a { color: inherit; text-decoration: none; } img, video { display: block; max-width: 100%; } button { font: inherit; color: inherit; }
+    h1, h2, h3, p { margin: 0; } h1, h2, h3 { font-family: var(--head); font-weight: 300; color: var(--ink); text-wrap: balance; }
+    :focus-visible { outline: 2px solid var(--copper-hi); outline-offset: 3px; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--gutter); }
+    .eyebrow { font: 400 12px/1 var(--head); letter-spacing: .28em; text-transform: uppercase; color: var(--copper-hi); }
+    .tlink { font: 400 13px/1 var(--head); letter-spacing: .18em; text-transform: uppercase; color: var(--ink); border-bottom: 1px solid var(--copper); padding-bottom: 5px; transition: color .2s; }
+    .tlink:hover { color: var(--copper-hi); }
+
+    /* ---------- Meny ---------- */
+    .top { position: fixed; inset: 0 0 auto; z-index: 70; transition: background .3s, border-color .3s; border-bottom: 1px solid transparent; }
+    .top.solid { background: rgba(0,0,0,.86); backdrop-filter: blur(12px); border-color: var(--line); }
+    .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 78px; }
+    .top .brand img { height: 46px; width: auto; }
+    .top nav { display: flex; align-items: center; gap: clamp(16px, 2.4vw, 36px); }
+    .top nav a { font: 400 13px/1 var(--head); letter-spacing: .2em; text-transform: uppercase; color: var(--ink); opacity: .75; transition: opacity .2s; }
+    .top nav a:hover { opacity: 1; }
+    .top nav a.cta { opacity: 1; padding: 13px 20px; border: 1px solid var(--copper); transition: background .2s, color .2s; }
+    .top nav a.cta:hover { background: var(--copper); color: #000; }
+    @media (max-width: 760px) { .top nav a:not(.cta) { display: none; } .top .brand img { height: 38px; } .top .wrap { height: 66px; } }
+
+    /* ---------- Hero: besökaren styr ljuset ---------- */
+    .hero { position: relative; height: 100svh; min-height: 600px; overflow: hidden; background: #000; --lx: 62%; --ly: 42%; }
+    .hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.1) brightness(1.02); }
+    .hero .light { position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 46% 58% at var(--lx) var(--ly), rgba(0,0,0,0) 0%, rgba(0,0,0,.34) 38%, rgba(0,0,0,.8) 78%, rgba(0,0,0,.9) 100%);
+      animation: lightup 2.2s cubic-bezier(.2,.7,.2,1) both; }
+    @keyframes lightup { from { opacity: 1; background-color: #000; } to { background-color: transparent; } }
+    .hero .floor { position: absolute; inset: auto 0 0; height: 46%; background: linear-gradient(0deg, #000 4%, rgba(0,0,0,0)); pointer-events: none; }
+    .hero .marks { position: absolute; inset: clamp(86px, 12vh, 120px) var(--gutter) clamp(22px, 4vh, 40px); pointer-events: none; }
+    .hero .marks i { position: absolute; width: 18px; height: 18px; border: 0 solid rgba(242,237,230,.55); }
+    .hero .marks i:nth-child(1) { left: 0; top: 0; border-width: 1px 0 0 1px; } .hero .marks i:nth-child(2) { right: 0; top: 0; border-width: 1px 1px 0 0; }
+    .hero .marks i:nth-child(3) { left: 0; bottom: 0; border-width: 0 0 1px 1px; } .hero .marks i:nth-child(4) { right: 0; bottom: 0; border-width: 0 1px 1px 0; }
+    .hero .hud { position: absolute; right: 16px; top: 14px; font: 400 11px/1 var(--mono); letter-spacing: .08em; color: rgba(242,237,230,.6); font-variant-numeric: tabular-nums; }
+    .hero .copy { position: absolute; left: 0; right: 0; bottom: clamp(56px, 9vh, 96px); z-index: 2; }
+    .hero h1 { font-weight: 200; font-size: clamp(38px, 7.6vw, 132px); line-height: .96; letter-spacing: .005em; text-transform: uppercase; margin: 18px 0 0; }
+    .hero h1 .fsf { color: var(--copper); font-weight: 300; }
+    .hero .row { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 36px; margin-top: clamp(22px, 3.4vh, 38px); }
+    .hero .play { display: inline-flex; align-items: center; gap: 14px; background: none; border: 1px solid var(--copper); padding: 15px 24px; cursor: pointer;
+      font: 400 13px/1 var(--head); letter-spacing: .2em; text-transform: uppercase; color: var(--ink); transition: background .25s, color .25s; }
+    .hero .play:hover { background: var(--copper); color: #000; } .hero .play svg { width: 10px; height: 12px; fill: currentColor; }
+    .hero .where { font: 400 13px/1.5 var(--head); letter-spacing: .14em; text-transform: uppercase; color: rgba(242,237,230,.75); }
+    .hero .hint { position: absolute; right: var(--gutter); bottom: clamp(56px, 9vh, 96px); z-index: 2; font: 400 11px/1 var(--mono); letter-spacing: .08em; color: rgba(242,237,230,.5); }
+    @media (hover: none), (max-width: 900px) { .hero .hint { display: none; } }
+
+    /* ---------- Kundloggor ---------- */
+    .trust { border-bottom: 1px solid var(--line); background: #000; }
+    .trust .wrap { display: grid; grid-template-columns: 1fr; gap: 26px; padding-block: 42px; align-items: center; }
+    @media (min-width: 1000px) { .trust .wrap { grid-template-columns: 150px 1fr; gap: 48px; } }
+    .logos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 28px; align-items: center; justify-items: center; }
+    @media (min-width: 760px) { .logos { grid-template-columns: repeat(6, 1fr); } }
+    .logos li { display: flex; align-items: center; justify-content: center; min-height: 44px; }
+    /* Alla loggor görs vita med ett filter, så färgade originalfiler fungerar */
+    .lg { height: var(--h, 26px); width: auto; max-width: 100%; filter: brightness(0) invert(1); opacity: .62; transition: opacity .25s; }
+    .lg:hover { opacity: 1; }
+    .lg.jpg { filter: grayscale(1) invert(1) contrast(1.7) brightness(1.5); mix-blend-mode: screen; }
+    .lgtxt { font: 400 14px/1 var(--head); letter-spacing: .24em; text-transform: uppercase; color: rgba(242,237,230,.55); }
+
+    /* ---------- Genreindex ---------- */
+    .index { position: relative; overflow: hidden; background: #000; border-bottom: 1px solid var(--line); }
+    .index .bg { position: absolute; inset: 0; }
+    .index .bg div { position: absolute; inset: 0; background-size: cover; background-position: center; filter: grayscale(1) contrast(1.08) brightness(.5); opacity: 0; transition: opacity .6s ease; }
+    .index .bg div.on { opacity: 1; }
+    .index .bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.86) 0%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.7) 100%); }
+    .index .wrap { position: relative; padding-block: clamp(70px, 10vw, 140px); }
+    .index ol { list-style: none; margin: 34px 0 0; padding: 0; }
+    .index li { border-top: 1px solid var(--line); } .index li:last-child { border-bottom: 1px solid var(--line); }
+    .index a { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 20px; padding: clamp(12px, 1.9vw, 24px) 0; }
+    .index .g { font: 200 clamp(34px, 7vw, 116px)/1.02 var(--head); text-transform: uppercase; color: rgba(242,237,230,.5); transition: color .3s, letter-spacing .5s cubic-bezier(.2,.7,.2,1); }
+    .index li.on .g, .index a:focus-visible .g { color: var(--ink); letter-spacing: .02em; }
+    .index .n { font: 400 12px/1 var(--mono); letter-spacing: .08em; color: var(--mute); white-space: nowrap; transition: color .3s; }
+    .index li.on .n { color: var(--copper-hi); }
+
+    /* ---------- Kapitel per genre ---------- */
+    .chapter { padding-block: clamp(70px, 9vw, 130px); border-bottom: 1px solid var(--line); }
+    .chapter:nth-of-type(even) { background: var(--carbon); }
+    .ch-head { display: grid; grid-template-columns: 1fr; gap: 18px 60px; align-items: end; margin-bottom: clamp(28px, 4vw, 52px); }
+    @media (min-width: 900px) { .ch-head { grid-template-columns: 1fr auto; } }
+    .ch-head h2 { font-weight: 200; font-size: clamp(34px, 5.4vw, 84px); line-height: 1; text-transform: uppercase; margin-top: 16px; }
+    .ch-head p { max-width: 44ch; margin-top: 16px; }
+    .feature { display: block; position: relative; width: 100%; padding: 0; border: 0; background: #050505; cursor: pointer; aspect-ratio: 2.39/1; overflow: hidden; }
+    .feature img, .cell img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.07); transition: filter .6s ease, transform 1.2s cubic-bezier(.2,.7,.2,1); }
+    .feature:hover img, .feature:focus-visible img { filter: grayscale(0) contrast(1.02); transform: scale(1.02); }
+    .feature::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.75), rgba(0,0,0,0) 46%); }
+    .feature .cap { position: absolute; z-index: 2; left: clamp(16px, 2.4vw, 36px); bottom: clamp(14px, 2vw, 30px); right: clamp(16px, 2.4vw, 36px); display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; text-align: left; }
+    .feature .cap b { display: block; font: 300 clamp(22px, 3vw, 42px)/1.05 var(--head); color: var(--ink); text-transform: uppercase; letter-spacing: .02em; }
+    .feature .cap small { font: 300 14px var(--body); color: var(--dim); }
+    .pill { display: inline-flex; align-items: center; gap: 10px; font: 400 12px/1 var(--head); letter-spacing: .2em; text-transform: uppercase; color: var(--ink); border: 1px solid rgba(242,237,230,.5); padding: 11px 16px; white-space: nowrap; transition: background .25s, border-color .25s, color .25s; }
+    .pill svg { width: 8px; height: 10px; fill: currentColor; }
+    .feature:hover .pill { background: var(--copper); border-color: var(--copper); color: #000; }
+    .strip { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(240px, 31%); gap: 14px; margin-top: 14px; overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 12px; scrollbar-width: thin; scrollbar-color: var(--mute) transparent; }
+    .cell { scroll-snap-align: start; background: none; border: 0; padding: 0; text-align: left; cursor: pointer; min-width: 0; }
+    .cell .f { aspect-ratio: 2.39/1; overflow: hidden; background: #050505; }
+    .cell:hover img, .cell:focus-visible img { filter: grayscale(0); transform: scale(1.04); }
+    .cell b { display: block; margin-top: 12px; font: 400 16px/1.2 var(--head); color: var(--ink); letter-spacing: .03em; } .cell small { font: 300 13px var(--body); color: var(--mute); }
+
+    /* ---------- Hantverk: från sensor till duk ---------- */
+    .craft { padding-block: clamp(70px, 9vw, 130px); border-bottom: 1px solid var(--line); }
+    .craft .wrap { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
+    @media (min-width: 1000px) { .craft .wrap { grid-template-columns: 4fr 8fr; gap: 72px; } }
+    .craft h2 { font-weight: 200; font-size: clamp(30px, 4vw, 60px); line-height: 1.04; text-transform: uppercase; margin: 16px 0 22px; }
+    .craft p { max-width: 42ch; margin-bottom: 16px; color: rgba(242,237,230,.8); } .craft p.demo { font-size: 12px; color: var(--mute); }
+    .wipe { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #050505; --p: 50%; user-select: none; }
+    .wipe img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .wipe .after { clip-path: inset(0 0 0 var(--p)); }
+    .wipe .bar { position: absolute; top: 0; bottom: 0; left: var(--p); width: 1px; background: var(--copper-hi); pointer-events: none; }
+    .wipe .bar::after { content: ""; position: absolute; left: -17px; top: 50%; width: 34px; height: 34px; margin-top: -17px; border: 1px solid var(--copper-hi); border-radius: 50%; background: rgba(0,0,0,.55); }
+    .wipe .tag { position: absolute; bottom: 14px; font: 400 11px/1 var(--mono); letter-spacing: .08em; color: var(--ink); background: rgba(0,0,0,.55); padding: 7px 9px; pointer-events: none; }
+    .wipe .tag.l { left: 14px; } .wipe .tag.r { right: 14px; }
+    .wipe input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
+
+    /* ---------- Referenser ---------- */
+    .refs { padding-block: clamp(70px, 9vw, 130px); border-bottom: 1px solid var(--line); background: var(--carbon); }
+    .refs .wrap { display: grid; grid-template-columns: 1fr; gap: 40px; }
+    @media (min-width: 1000px) { .refs .wrap { grid-template-columns: 8fr 4fr; gap: 80px; align-items: start; } }
+    .qstage { position: relative; display: grid; margin-top: 30px; }
+    .qstage blockquote { grid-area: 1 / 1; margin: 0; font: italic 400 clamp(26px, 3.6vw, 56px)/1.18 var(--quote); color: var(--ink); max-width: 24ch; opacity: 0; visibility: hidden; transition: opacity .5s ease; text-wrap: balance; }
+    .qstage blockquote.on { opacity: 1; visibility: visible; }
+    .who { list-style: none; margin: 0; padding: 0; } @media (min-width: 1000px) { .who { margin-top: 44px; } }
+    .who button { display: block; width: 100%; text-align: left; background: none; border: 0; border-top: 1px solid var(--line); padding: 18px 0 18px 18px; cursor: pointer; position: relative; }
+    .who li:last-child button { border-bottom: 1px solid var(--line); }
+    .who button::before { content: ""; position: absolute; left: 0; top: 18px; bottom: 18px; width: 2px; background: var(--copper); transform: scaleY(0); transition: transform .3s; }
+    .who button[aria-pressed="true"]::before { transform: scaleY(1); }
+    .who b { display: block; font: 400 15px/1.2 var(--head); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); transition: color .25s; }
+    .who button[aria-pressed="true"] b, .who button:hover b { color: var(--ink); } .who small { font: 300 13px var(--body); color: var(--mute); }
+
+    /* ---------- About: ljust papper ---------- */
+    .about { background: var(--paper); color: var(--paper-dim); padding-block: clamp(70px, 9vw, 140px); }
+    .about .wrap { display: grid; grid-template-columns: 1fr; gap: 44px; }
+    @media (min-width: 1000px) { .about .wrap { grid-template-columns: 5fr 7fr; gap: 88px; align-items: center; } }
+    .about .eyebrow { color: #8f5624; } .about img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+    .about h2 { color: var(--paper-ink); font-weight: 200; font-size: clamp(34px, 4.8vw, 76px); line-height: 1.02; text-transform: uppercase; margin: 16px 0 26px; max-width: 14ch; }
+    .about p { max-width: 58ch; margin-bottom: 16px; color: #3b3832; font-weight: 400; }
+    .facts { list-style: none; margin: 34px 0 34px; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 32px; border-top: 1px solid rgba(18,17,15,.2); }
+    .facts li { padding: 16px 0; border-bottom: 1px solid rgba(18,17,15,.2); } .facts b { display: block; font: 300 clamp(20px, 2.2vw, 28px)/1.1 var(--head); color: var(--paper-ink); } .facts span { font: 400 11px/1.4 var(--head); letter-spacing: .2em; text-transform: uppercase; }
+    .about .tlink { color: var(--paper-ink); margin-right: 28px; } .about .tlink:hover { color: #8f5624; }
+
+    /* ---------- Kontakt + kamerasystem ---------- */
+    .contact { padding-block: clamp(80px, 10vw, 150px) 0; background: #000; }
+    .contact .big { display: block; width: fit-content; max-width: 100%; font: 200 clamp(26px, 6vw, 104px)/1.1 var(--head); color: var(--ink); overflow-wrap: anywhere; border-bottom: 1px solid var(--copper); padding-bottom: 8px; margin-top: 24px; transition: color .2s; }
+    .contact .big:hover { color: var(--copper-hi); }
+    .contact .soc { display: flex; flex-wrap: wrap; gap: 12px 34px; margin-top: 44px; } .contact .soc a { font: 400 13px/1 var(--head); letter-spacing: .2em; text-transform: uppercase; color: var(--dim); transition: color .2s; } .contact .soc a:hover { color: var(--copper-hi); }
+    .gear { margin-top: clamp(70px, 9vw, 120px); border-top: 1px solid var(--line); }
+    .gear .wrap { display: grid; grid-template-columns: 1fr; gap: 26px; padding-block: 40px; align-items: center; }
+    @media (min-width: 1000px) { .gear .wrap { grid-template-columns: 150px 1fr; gap: 48px; } }
+    .gear .logos { grid-template-columns: repeat(2, 1fr); } @media (min-width: 760px) { .gear .logos { grid-template-columns: repeat(4, 1fr); } }
+    footer { border-top: 1px solid var(--line); padding-block: 26px 40px; font-size: 13px; color: var(--mute); }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 14px 28px; justify-content: space-between; align-items: center; } footer img { height: 32px; width: auto; }
+
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+
+<header class="top" id="top"><div class="wrap">
+  <a class="brand" href="#top" aria-label="Nicklas Karpaty, FSF"><img src="media/nk-logo.png" alt="Nicklas Karpaty, FSF" width="704" height="299"></a>
+  <nav aria-label="Primary"><a href="#work">Work</a><a href="#references">References</a><a href="#about">About</a><a class="cta" href="#contact">Contact</a></nav>
+</div></header>
+
+<main>
+  <section class="hero" id="hero" aria-label="Showreel">
+    <video id="v" autoplay muted loop playsinline preload="auto" poster="media/hero-poster.jpg"><source src="media/hero.mp4" type="video/mp4"></video>
+    <div class="light"></div><div class="floor"></div>
+    <div class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="hud" id="tc">00:00:00:00</span></div>
+    <div class="copy"><div class="wrap">
+      <p class="eyebrow">Cinematographer · Director of Photography</p>
+      <h1>Nicklas Karpaty<span class="fsf">, FSF</span></h1>
+      <div class="row">
+        <button class="play" id="reel" type="button"><svg viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z"/></svg>Play showreel</button>
+        <span class="where">Gothenburg, Sweden · Working worldwide</span>
+      </div>
+    </div></div>
+    <span class="hint" aria-hidden="true">Move to light the frame</span>
+  </section>
+
+  <section class="trust" aria-label="Clients"><div class="wrap">
+    <p class="eyebrow">Trusted by</p>
+    <ul class="logos" id="clients"></ul>
+  </div></section>
+
+  <section class="index" id="work" aria-label="Work by genre">
+    <div class="bg" id="ibg" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow">What are you making?</p>
+      <ol id="ilist"></ol>
+    </div>
+  </section>
+
+  <div id="chapters"></div>
+
+  <section class="craft" aria-label="Craft"><div class="wrap">
+    <div>
+      <p class="eyebrow">Craft</p>
+      <h2>From sensor to screen</h2>
+      <p>The look is decided before the camera rolls: lens, light, exposure and a show LUT built for the story. The grade then finishes what was planned on set.</p>
+      <p class="demo">Demo: vänsterbilden är en simulerad platt bild. Byt mot en riktig LOG-ruta och den färdiga graden.</p>
+    </div>
+    <div class="wipe" id="wipe">
+      <img src="media/grade-flat.jpg" alt="Ungraded camera image">
+      <img class="after" src="media/grade-graded.jpg" alt="Final graded image">
+      <span class="bar"></span><span class="tag l">LOG</span><span class="tag r">GRADE</span>
+      <input id="wr" type="range" min="0" max="100" value="50" aria-label="Compare ungraded and graded image">
+    </div>
+  </div></section>
+
+  <section class="refs" id="references" aria-label="References"><div class="wrap">
+    <div><p class="eyebrow">Directors and producers</p><div class="qstage" id="qstage" aria-live="polite"></div></div>
+    <ul class="who" id="who"></ul>
+  </div></section>
+
+  <section class="about" id="about"><div class="wrap">
+    <img src="media/portrait.jpg" alt="Portrait of Nicklas Karpaty, FSF" width="1200" height="1200">
+    <div>
+      <p class="eyebrow">About</p>
+      <h2>Storytelling dictates the language</h2>
+      <p>With over 20 years of experience as a cinematographer, I work across genres, letting each unique script guide the visual narrative. From international drama and award-winning festival films to premium commercial branding, my drive is to find the visual heart of every scene.</p>
+      <p>While deeply rooted in traditional craft, I navigate the cutting edge of technology. By integrating modern tools like AI-driven previsualisation into the workflow, I ensure visual clarity and creative freedom long before the camera rolls.</p>
+      <ul class="facts">
+        <li><b>20+ years</b><span>Behind the camera</span></li>
+        <li><b>FSF</b><span>Swedish Society of Cinematographers</span></li>
+        <li><b>Gothenburg</b><span>Based in Sweden, working worldwide</span></li>
+        <li><b>Drama to LED volume</b><span>Fiction, documentary, branded, VP</span></li>
+      </ul>
+      <a class="tlink" href="https://www.nicklaskarpaty.com/cinematography-process">My process</a><a class="tlink" href="https://www.nicklaskarpaty.com/downloads">Download CV</a>
+    </div>
+  </div></section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <p class="eyebrow">Contact</p>
+      <a class="big" id="em" href="#"></a><a class="big" id="ph" href="#"></a>
+      <div class="soc" id="soc"></div>
+    </div>
+    <div class="gear" aria-label="Camera systems"><div class="wrap">
+      <p class="eyebrow">Shooting on</p>
+      <ul class="logos" id="gear"></ul>
+    </div></div>
+  </section>
+</main>
+
+<footer><div class="wrap"><img src="media/nlc-symbol.png" alt="Nordic Light Cinematography" width="746" height="742"><span>© 2026 Nicklas Karpaty, FSF · Nordic Light Cinematography AB · Gothenburg, Sweden</span></div></footer>
+
+<script src="data.js"></script><script src="player.js"></script>
+<script>
+(function () {
+  var $ = function (s) { return document.querySelector(s); };
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var WM = 'https://upload.wikimedia.org/wikipedia/';
+
+  /* Loggor: officiella filer (Wikimedia Commons) visas vita via CSS-filter.
+     Inför publicering: lägg egna kopior i media/logos/ och byt adresserna här. */
+  var CLIENTS = [
+    { n: 'Volvo', src: WM + 'commons/5/54/Volvo_logo.svg', h: 15 },
+    { n: 'Polestar', src: WM + 'commons/f/f0/Polestar_Logo.svg', h: 26 },
+    { n: 'Zeekr', src: WM + 'commons/1/1e/Zeekr_logo.svg', h: 20 },
+    { n: 'SVT', src: WM + 'commons/3/39/SVT_2016.svg', h: 40 },
+    { n: 'LO', src: WM + 'commons/4/4f/Landsorganisationen_i_Sverige_logo.svg', h: 46 },
+    { n: 'Ascom', src: WM + 'commons/e/ef/Logo_Ascom.svg', h: 26 }
+  ];
+  var GEAR = [
+    { n: 'ARRI', src: WM + 'commons/d/de/Arri_logo.svg', h: 30 },
+    { n: 'Panavision', src: WM + 'commons/7/73/Panavision_logo.svg', h: 46 },
+    { n: 'Sony CineAlta', src: WM + 'commons/e/e4/Sony_CineAlta_logo_V3.png', h: 64 },
+    { n: 'RED Digital Cinema', src: WM + 'en/3/36/Red-Camera-Logo.jpeg', h: 70, jpg: true }
+  ];
+  function logos(el, list) {
+    el.innerHTML = list.map(function (l) { return '<li><img class="lg' + (l.jpg ? ' jpg' : '') + '" style="--h:' + l.h + 'px" src="' + l.src + '" alt="' + l.n + '" loading="lazy"></li>'; }).join('');
+    el.querySelectorAll('img').forEach(function (im) { im.addEventListener('error', function () { var s = document.createElement('span'); s.className = 'lgtxt'; s.textContent = im.alt; im.replaceWith(s); }); });
+  }
+  logos($('#clients'), CLIENTS); logos($('#gear'), GEAR);
+
+  /* Genreindex + kapitel */
+  var order = ['drama', 'doc', 'branded', 'vp'], play = '<svg viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z"/></svg>';
+  var bg = '', li = '', ch = '';
+  order.forEach(function (g, k) {
+    var G = NK.genres[g], list = NK.byGenre(g), f = list[0], rest = list.slice(1);
+    bg += '<div data-g="' + g + '"' + (k ? '' : ' class="on"') + ' style="background-image:url(\'' + f.img + '\')"></div>';
+    li += '<li data-g="' + g + '"' + (k ? '' : ' class="on"') + '><a href="#' + g + '"><span class="g">' + G.name + '</span><span class="n">' + list.length + ' films</span></a></li>';
+    ch += '<section class="chapter" id="' + g + '"><div class="wrap"><div class="ch-head"><div><p class="eyebrow">' + list.length + ' films</p><h2>' + G.name + '</h2><p>' + G.blurb + '</p></div><a class="tlink" href="' + G.href + '">All ' + G.name.toLowerCase() + '</a></div>' +
+      '<button class="feature" type="button" data-i="' + NK.items.indexOf(f) + '"><img src="' + f.img + '" alt="Still from ' + f.t + '" loading="lazy"><span class="cap"><span><b>' + f.t + '</b><small>' + f.s + '</small></span><span class="pill">' + (f.p === 'link' ? 'Open' : play + 'Play scene') + '</span></span></button>' +
+      '<div class="strip">' + rest.map(function (it) { return '<button class="cell" type="button" data-i="' + NK.items.indexOf(it) + '"><div class="f"><img src="' + it.img + '" alt="Still from ' + it.t + '" loading="lazy"></div><b>' + it.t + '</b><small>' + it.s + '</small></button>'; }).join('') + '</div></div></section>';
+  });
+  $('#ibg').innerHTML = bg; $('#ilist').innerHTML = li; $('#chapters').innerHTML = ch;
+  function pick(g) { document.querySelectorAll('#ibg div, #ilist li').forEach(function (n) { n.classList.toggle('on', n.dataset.g === g); }); }
+  $('#ilist').addEventListener('mouseover', function (e) { var l = e.target.closest('li'); if (l) pick(l.dataset.g); });
+  $('#ilist').addEventListener('focusin', function (e) { var l = e.target.closest('li'); if (l) pick(l.dataset.g); });
+  $('#chapters').addEventListener('click', function (e) { var b = e.target.closest('[data-i]'); if (b) NKplay(NK.items[+b.dataset.i]); });
+
+  /* Referenser */
+  $('#qstage').innerHTML = NK.quotes.map(function (q, i) { return '<blockquote' + (i ? '' : ' class="on"') + '>“' + q.q + '”</blockquote>'; }).join('');
+  $('#who').innerHTML = NK.quotes.map(function (q, i) { return '<li><button type="button" data-q="' + i + '" aria-pressed="' + (i ? 'false' : 'true') + '"><b>' + q.n + '</b><small>' + q.r + '</small></button></li>'; }).join('');
+  $('#who').addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; var n = +b.dataset.q;
+    document.querySelectorAll('#qstage blockquote').forEach(function (x, i) { x.classList.toggle('on', i === n); });
+    document.querySelectorAll('#who button').forEach(function (x, i) { x.setAttribute('aria-pressed', i === n); }); });
+
+  /* Kontakt */
+  $('#em').href = 'mailto:' + NK.contact.email; $('#em').textContent = NK.contact.email;
+  $('#ph').href = 'tel:' + NK.contact.tel; $('#ph').textContent = NK.contact.phone;
+  $('#soc').innerHTML = NK.social.map(function (s) { return '<a href="' + s[1] + '" rel="noopener">' + s[0] + '</a>'; }).join('');
+
+  /* Meny */
+  var top = $('.top'); function sc() { top.classList.toggle('solid', scrollY > 40); } sc(); addEventListener('scroll', sc, { passive: true });
+
+  /* Hero: ljuset följer pekaren, och driver långsamt av sig självt på pekskärm */
+  var hero = $('#hero'), v = $('#v'), tc = $('#tc'), tx = 62, ty = 42, cx = 62, cy = 42, user = false, t0 = performance.now();
+  function p2(n) { return (n < 10 ? '0' : '') + n; }
+  function frame(now) {
+    if (!user && !reduce) { var a = (now - t0) / 9000; tx = 55 + Math.cos(a) * 22; ty = 44 + Math.sin(a * 1.3) * 10; }
+    cx += (tx - cx) * .06; cy += (ty - cy) * .06;
+    hero.style.setProperty('--lx', cx.toFixed(2) + '%'); hero.style.setProperty('--ly', cy.toFixed(2) + '%');
+    var t = v.currentTime || 0; tc.textContent = p2(Math.floor(t / 3600)) + ':' + p2(Math.floor(t / 60) % 60) + ':' + p2(Math.floor(t) % 60) + ':' + p2(Math.floor((t % 1) * 25));
+    requestAnimationFrame(frame);
+  }
+  hero.addEventListener('pointermove', function (e) { var r = hero.getBoundingClientRect(); user = true; tx = (e.clientX - r.left) / r.width * 100; ty = (e.clientY - r.top) / r.height * 100; });
+  hero.addEventListener('pointerleave', function () { user = false; t0 = performance.now(); });
+  if (reduce) { v.pause(); v.removeAttribute('autoplay'); } else requestAnimationFrame(frame);
+  $('#reel').onclick = function () { NKplay({ p: 'vimeo', id: '908412577', t: 'Showreel', s: 'Nicklas Karpaty, FSF' }); };
+
+  /* Graderingsjämförelse */
+  var wipe = $('#wipe'); $('#wr').addEventListener('input', function () { wipe.style.setProperty('--p', this.value + '%'); });
+})();
+</script>
+</body>
+</html>

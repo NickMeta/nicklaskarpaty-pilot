@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Nicklas Karpaty, FSF — Cinematographer / DoP, Gothenburg</title>
+  <meta name="description" content="Nicklas Karpaty, FSF — cinematographer and director of photography based in Gothenburg. Drama, documentary, branded films and virtual production.">
+  <link rel="canonical" href="https://www.nicklaskarpaty.com/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Montserrat:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* UTKAST A: förfinad version. Tydliga block per genre, Alexa 35-ramguide över filmen,
+       subtila testloggor och en smal referensrad. Färg och typ följer NLC-brandboken. */
+    :root {
+      --bg: #000; --panel: #0b0a09; --ink: #f1ece6; --dim: #9a948c; --line: rgba(241,236,230,.13);
+      --copper: #b87333; --copper-80: #c68f5c;
+      --head: "Jost", "Futura", sans-serif; --body: "Montserrat", "Gotham", system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --gutter: 24px; --maxw: 1320px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--bg); color: var(--dim); font: 300 16px/1.7 var(--body); -webkit-font-smoothing: antialiased; }
+    body::before { content: ""; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: .05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    a { color: inherit; text-decoration: none; }
+    img, video { display: block; max-width: 100%; }
+    h1, h2, h3 { font-family: var(--head); font-weight: 300; color: var(--ink); margin: 0; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+    :focus-visible { outline: 2px solid var(--copper); outline-offset: 3px; }
+
+    /* Meny */
+    .site-header { position: fixed; inset: 0 0 auto; z-index: 60; transition: background .3s; background: linear-gradient(180deg, rgba(0,0,0,.7), transparent); }
+    .site-header.solid { background: rgba(0,0,0,.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+    .site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 20px; }
+    .brand img { height: 46px; width: auto; }
+    .nav { display: flex; align-items: center; gap: 28px; }
+    .nav a { font: 400 14px var(--head); letter-spacing: .16em; text-transform: uppercase; color: var(--ink); opacity: .78; padding: 6px 0; border-bottom: 1px solid transparent; transition: .2s; }
+    .nav a:hover { opacity: 1; border-color: var(--copper); }
+    .nav .cta { opacity: 1; border: 1px solid var(--copper); padding: 9px 16px; }
+    .nav .cta:hover { background: var(--copper); color: #000; }
+    @media (max-width: 760px) { .nav a:not(.cta) { display: none; } .brand img { height: 38px; } }
+
+    /* Hero med Alexa 35-ramguide */
+    .hero { position: relative; height: 100svh; min-height: 560px; overflow: hidden; background: #000; }
+    .hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.06) brightness(.82); }
+    .guide { position: absolute; inset: 0; pointer-events: none; color: rgba(241,236,230,.85); font: 400 11px/1 var(--mono); letter-spacing: .06em; transition: opacity .35s; }
+    .guide[hidden] { display: none; }
+    /* Graderade lager: 1) mörkare utanför 2.39:1, 2) toppgradient, 3) bottengradient */
+    .g-mask { position: absolute; left: 0; right: 0; top: 50%; aspect-ratio: 2.39/1; width: 100%; transform: translateY(-50%); box-shadow: 0 0 0 100vmax rgba(0,0,0,.52); }
+    .g-top { position: absolute; inset: 0 0 auto; height: 22%; background: linear-gradient(180deg, rgba(0,0,0,.65), transparent); }
+    .g-bot { position: absolute; inset: auto 0 0; height: 55%; background: linear-gradient(0deg, rgba(0,0,0,.85), rgba(0,0,0,.35) 55%, transparent); }
+    .g-frame { position: absolute; left: 3%; right: 3%; top: 13%; bottom: 13%; border: 1px solid rgba(241,236,230,.28); }
+    .g-frame i { position: absolute; width: 22px; height: 22px; border: 0 solid var(--copper); }
+    .g-frame i:nth-child(1) { left: -1px; top: -1px; border-width: 2px 0 0 2px; } .g-frame i:nth-child(2) { right: -1px; top: -1px; border-width: 2px 2px 0 0; }
+    .g-frame i:nth-child(3) { left: -1px; bottom: -1px; border-width: 0 0 2px 2px; } .g-frame i:nth-child(4) { right: -1px; bottom: -1px; border-width: 0 2px 2px 0; }
+    .g-cross { position: absolute; left: 50%; top: 50%; width: 26px; height: 26px; transform: translate(-50%,-50%); opacity: .55; }
+    .g-cross::before, .g-cross::after { content: ""; position: absolute; background: rgba(241,236,230,.9); }
+    .g-cross::before { left: 50%; top: 0; bottom: 0; width: 1px; } .g-cross::after { top: 50%; left: 0; right: 0; height: 1px; }
+    .hud { position: absolute; left: 3%; right: 3%; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .hud.t { top: calc(13% + 14px); padding: 0 16px; } .hud.b { bottom: calc(13% + 14px); padding: 0 16px; align-items: flex-end; }
+    .hud b { font-weight: 500; color: var(--copper-80); }
+    .hud .rec { display: inline-flex; align-items: center; gap: 7px; } .hud .rec::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #d2412f; animation: blink 1.6s steps(2) infinite; }
+    @keyframes blink { 50% { opacity: .15; } }
+    .hud .tc { font-size: 13px; color: var(--ink); font-variant-numeric: tabular-nums; }
+    .hud span { white-space: nowrap; }
+    @media (max-width: 760px) { .hud.t span:nth-child(n+3), .hud.b .meta2 { display: none; } .g-frame { top: 16%; bottom: 16%; } .hud.t { top: calc(16% + 10px); } .hud.b { bottom: calc(16% + 10px); } }
+    .hero-copy { position: absolute; z-index: 3; left: 0; right: 0; bottom: calc(13% + 52px); }
+    .hero-copy .wrap { padding-left: calc(var(--gutter) + 3%); }
+    .hero .role { font: 400 clamp(12px, 1.4vw, 15px) var(--head); letter-spacing: .3em; text-transform: uppercase; color: var(--copper-80); margin: 0 0 12px; }
+    .hero h1 { font-size: clamp(34px, 6.4vw, 88px); line-height: 1; letter-spacing: .01em; text-transform: uppercase; }
+    .hero h1 .fsf { color: var(--copper); }
+    .hero .tag { font: 300 clamp(18px, 2.4vw, 26px) var(--head); color: var(--ink); margin: 14px 0 0; }
+    .gtoggle { position: absolute; z-index: 4; right: 20px; bottom: 18px; font: 400 11px var(--mono); letter-spacing: .08em; color: var(--dim); background: rgba(0,0,0,.55); border: 1px solid var(--line); padding: 7px 11px; cursor: pointer; }
+    .gtoggle:hover { color: var(--ink); border-color: var(--copper); }
+
+    /* Block */
+    section { padding: clamp(64px, 9vw, 110px) 0; }
+    .block { border-top: 1px solid var(--line); }
+    .block .grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
+    @media (min-width: 980px) { .block .grid { grid-template-columns: 4fr 8fr; gap: 56px; } .label { position: sticky; top: 110px; align-self: start; } }
+    .label h2 { font-size: clamp(30px, 3.6vw, 46px); text-transform: uppercase; letter-spacing: .05em; line-height: 1.08; }
+    .label p { max-width: 34ch; margin: 18px 0 24px; }
+    .label a { font: 400 13px var(--head); letter-spacing: .16em; text-transform: uppercase; color: var(--copper-80); border-bottom: 1px solid var(--copper); padding-bottom: 3px; }
+    .tiles { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    @media (min-width: 600px) { .tiles { grid-template-columns: 1fr 1fr; } }
+    .tile { display: block; width: 100%; text-align: left; background: none; border: 0; padding: 0; color: inherit; cursor: pointer; font: inherit; }
+    .frame { position: relative; aspect-ratio: 2.39/1; overflow: hidden; background: var(--panel); }
+    .frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.06); transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .4s; }
+    .tile:hover img, .tile:focus-visible img { transform: scale(1.04); filter: grayscale(.1); }
+    .frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,.7)); }
+    .play { position: absolute; z-index: 2; right: 14px; bottom: 12px; font: 400 11px var(--mono); letter-spacing: .08em; color: var(--ink); }
+    .meta { margin-top: 10px; font: 400 17px var(--head); color: var(--ink); letter-spacing: .02em; } .meta small { display: block; font: 300 13px var(--body); color: var(--dim); letter-spacing: 0; }
+
+    /* Kunder */
+    .clients { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 38px 0; background: var(--panel); }
+    .clients .wrap { display: flex; align-items: center; gap: 36px; }
+    .clients h2 { font: 400 13px var(--head); letter-spacing: .24em; text-transform: uppercase; color: var(--dim); white-space: nowrap; }
+    .logos { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 22px 46px; flex: 1; }
+    .logos li { font: 400 clamp(14px, 1.5vw, 17px) var(--head); letter-spacing: .26em; text-transform: uppercase; color: rgba(241,236,230,.42); transition: color .25s; }
+    .logos li:hover { color: var(--ink); }
+    @media (max-width: 860px) { .clients .wrap { flex-direction: column; align-items: flex-start; gap: 20px; } }
+    .note { font: 300 12px var(--body); color: #6c675f; margin-top: 14px; }
+
+    /* Referenser: smal rad */
+    .refs { padding: 0; border-bottom: 1px solid var(--line); }
+    .refs .wrap { display: grid; grid-template-columns: 1fr; gap: 14px 40px; align-items: center; padding-top: 34px; padding-bottom: 34px; }
+    @media (min-width: 900px) { .refs .wrap { grid-template-columns: 170px 1fr 150px; } }
+    .refs h2 { font: 400 13px var(--head); letter-spacing: .24em; text-transform: uppercase; color: var(--dim); }
+    .qbox { position: relative; min-height: 92px; }
+    .qbox figure { position: absolute; inset: 0; margin: 0; opacity: 0; transition: opacity .6s; display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+    .qbox figure.on { opacity: 1; }
+    .qbox blockquote { margin: 0; font: 300 clamp(17px, 2vw, 23px)/1.4 var(--head); color: var(--ink); max-width: 62ch; }
+    .qbox blockquote::before { content: "“"; color: var(--copper); margin-right: 4px; }
+    .qbox figcaption { font-size: 13px; color: var(--dim); } .qbox figcaption b { font: 400 12px var(--head); letter-spacing: .16em; text-transform: uppercase; color: var(--copper-80); margin-right: 8px; }
+    .qctl { display: flex; gap: 8px; justify-content: flex-end; }
+    .qctl button { width: 38px; height: 38px; border: 1px solid var(--line); background: none; color: var(--ink); cursor: pointer; font: 400 15px var(--mono); } .qctl button:hover { border-color: var(--copper); }
+    .qdots { display: flex; gap: 6px; align-items: center; margin-right: 6px; } .qdots i { width: 6px; height: 6px; border-radius: 50%; background: var(--line); } .qdots i.on { background: var(--copper); }
+    @media (max-width: 899px) { .qbox { min-height: 150px; } .qctl { justify-content: flex-start; } }
+
+    /* About, contact */
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: 44px; } @media (min-width: 900px) { .about-grid { grid-template-columns: 5fr 7fr; gap: 80px; align-items: center; } }
+    .portrait { aspect-ratio: 1/1; overflow: hidden; background: var(--panel); } .portrait img { width: 100%; height: 100%; object-fit: cover; }
+    .about h2, .contact h2 { font-size: clamp(30px, 3.6vw, 46px); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 26px; }
+    .about p { max-width: 58ch; margin: 0 0 20px; color: rgba(241,236,230,.82); } .about p.lead { font: 300 clamp(22px, 3vw, 32px)/1.25 var(--head); color: var(--ink); max-width: 26ch; }
+    .link { font: 400 13px var(--head); letter-spacing: .16em; text-transform: uppercase; color: var(--copper-80); border-bottom: 1px solid var(--copper); padding-bottom: 3px; }
+    .contact { border-top: 1px solid var(--line); }
+    .contact a.big { display: block; width: fit-content; max-width: 100%; font: 300 clamp(24px, 5vw, 56px) var(--head); color: var(--ink); border-bottom: 1px solid var(--copper); padding-bottom: 6px; margin-bottom: 20px; overflow-wrap: anywhere; } .contact a.big:hover { color: var(--copper-80); }
+    .social { margin-top: 38px; display: flex; flex-wrap: wrap; gap: 10px 30px; } .social a { font: 400 13px var(--head); letter-spacing: .16em; text-transform: uppercase; } .social a:hover { color: var(--copper-80); }
+    footer { border-top: 1px solid var(--line); padding: 28px 0 44px; font-size: 13px; } footer .wrap { display: flex; flex-wrap: wrap; gap: 14px 28px; justify-content: space-between; align-items: center; } footer img { height: 34px; width: auto; }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+  </style>
+</head>
+<body>
+
+<header class="site-header" id="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Nicklas Karpaty, FSF"><img src="media/nk-logo.png" alt="Nicklas Karpaty, FSF" width="704" height="299"></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#drama">Work</a><a href="#references">References</a><a href="#about">About</a><a class="cta" href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="padding:0" aria-label="Showreel">
+    <video id="hero" autoplay muted loop playsinline preload="auto" poster="media/hero-poster.jpg"><source src="media/hero.mp4" type="video/mp4"></video>
+
+    <!-- Alexa 35-ramguide. Värden är dekor, ingen riktig kameradata. Visas/döljs med knappen eller tangent G. -->
+    <div class="guide" id="guide" aria-hidden="true">
+      <div class="g-top"></div><div class="g-bot"></div><div class="g-mask"></div>
+      <div class="g-frame"><i></i><i></i><i></i><i></i></div>
+      <div class="g-cross"></div>
+      <div class="hud t"><span><b>ARRI ALEXA 35</b></span><span>4.6K 3:2 · S35</span><span>25 fps · 180°</span><span>ISO 800 · 5600 K</span><span class="rec">REC <span class="tc" id="tc">00:00:00:00</span></span></div>
+      <div class="hud b"><span class="meta2">2.39:1</span><span>T2.8 · 35 mm</span><span>Rec.709 · LUT: NLC</span></div>
+    </div>
+
+    <div class="hero-copy"><div class="wrap">
+      <p class="role">Cinematographer · Director of Photography</p>
+      <h1>Nicklas Karpaty<span class="fsf">, FSF</span></h1>
+      <p class="tag">Your story. My lens.</p>
+    </div></div>
+    <button class="gtoggle" id="gt" type="button" aria-pressed="true">Frame guide: on (G)</button>
+  </section>
+
+  <div id="blocks"></div>
+
+  <section class="clients" style="padding:38px 0" aria-label="Clients">
+    <div class="wrap">
+      <h2>Worked with</h2>
+      <ul class="logos" id="logos"></ul>
+    </div>
+    <div class="wrap"><p class="note">Testloggor. Byts mot riktiga logotyper när de finns.</p></div>
+  </section>
+
+  <section class="refs" id="references" aria-label="References">
+    <div class="wrap">
+      <h2>References</h2>
+      <div class="qbox" id="qbox" aria-live="polite"></div>
+      <div class="qctl"><span class="qdots" id="qdots"></span><button id="qp" type="button" aria-label="Previous">&larr;</button><button id="qn" type="button" aria-label="Next">&rarr;</button></div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div class="portrait"><img src="media/portrait.jpg" alt="Portrait of Nicklas Karpaty, FSF" width="1200" height="1200"></div>
+      <div>
+        <h2>About</h2>
+        <p class="lead">Storytelling dictates the language.</p>
+        <p>With over 20 years of experience as a cinematographer, I work across genres, letting each unique script guide the visual narrative. From international drama and award-winning festival films to premium commercial branding, my drive is to find the visual heart of every scene.</p>
+        <p>While deeply rooted in traditional craft, I navigate the cutting edge of technology. By integrating modern tools like AI-driven previsualisation into the workflow, I ensure visual clarity and creative freedom long before the camera rolls.</p>
+        <a class="link" href="https://www.nicklaskarpaty.com/cinematography-process">Read about my process</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <a class="big" id="em" href="#"></a><a class="big" id="ph" href="#"></a>
+      <div class="social" id="soc"></div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><img src="media/nlc-symbol.png" alt="Nordic Light Cinematography" width="746" height="742"><span>© 2026 Nicklas Karpaty, FSF · Nordic Light Cinematography AB · Gothenburg, Sweden</span></div></footer>
+
+<script src="data.js"></script>
+<script src="player.js"></script>
+<script>
+(function () {
+  var $ = function (s) { return document.querySelector(s); };
+  // Genreblock
+  var out = '';
+  ['drama', 'doc', 'branded', 'vp'].forEach(function (g) {
+    var G = NK.genres[g], list = NK.byGenre(g);
+    out += '<section class="block" id="' + g + '"><div class="wrap grid"><div class="label"><h2>' + G.name + '</h2><p>' + G.blurb + '</p><a href="' + G.href + '">All ' + G.name.toLowerCase() + ' work</a></div><div class="tiles">';
+    list.forEach(function (it) {
+      var idx = NK.items.indexOf(it);
+      out += '<button class="tile" type="button" data-i="' + idx + '"><div class="frame"><img loading="lazy" src="' + it.img + '" alt="Still from ' + it.t + '"><span class="play">' + (it.p === 'link' ? 'OPEN' : '▶ PLAY') + '</span></div><div class="meta">' + it.t + '<small>' + it.s + '</small></div></button>';
+    });
+    out += '</div></div></section>';
+  });
+  $('#blocks').innerHTML = out;
+  $('#blocks').addEventListener('click', function (e) { var b = e.target.closest('.tile'); if (b) NKplay(NK.items[+b.dataset.i]); });
+  // Loggor, kontakt
+  $('#logos').innerHTML = NK.clients.map(function (c) { return '<li>' + c + '</li>'; }).join('');
+  $('#em').href = 'mailto:' + NK.contact.email; $('#em').textContent = NK.contact.email;
+  $('#ph').href = 'tel:' + NK.contact.tel; $('#ph').textContent = NK.contact.phone;
+  $('#soc').innerHTML = NK.social.map(function (s) { return '<a href="' + s[1] + '" rel="noopener">' + s[0] + '</a>'; }).join('');
+  // Referenser
+  var qi = 0, qt, reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  $('#qbox').innerHTML = NK.quotes.map(function (q) { return '<figure><blockquote>' + q.q + '</blockquote><figcaption><b>' + q.n + '</b>' + q.r + '</figcaption></figure>'; }).join('');
+  $('#qdots').innerHTML = NK.quotes.map(function () { return '<i></i>'; }).join('');
+  function show(n) { qi = (n + NK.quotes.length) % NK.quotes.length; document.querySelectorAll('#qbox figure').forEach(function (f, i) { f.classList.toggle('on', i === qi); }); document.querySelectorAll('#qdots i').forEach(function (d, i) { d.classList.toggle('on', i === qi); }); }
+  function auto() { clearInterval(qt); if (!reduce) qt = setInterval(function () { show(qi + 1); }, 8000); }
+  $('#qp').onclick = function () { show(qi - 1); auto(); }; $('#qn').onclick = function () { show(qi + 1); auto(); };
+  $('#qbox').addEventListener('mouseenter', function () { clearInterval(qt); }); $('#qbox').addEventListener('mouseleave', auto);
+  show(0); auto();
+  // Meny
+  var h = $('.site-header'); function sc() { h.classList.toggle('solid', scrollY > 60); } sc(); addEventListener('scroll', sc, { passive: true });
+  // Ramguide och tidkod
+  var v = $('#hero'), tc = $('#tc'), gd = $('#guide'), gt = $('#gt');
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function tick() { var t = v.currentTime || 0, f = Math.floor((t % 1) * 25), s = Math.floor(t) % 60, m = Math.floor(t / 60) % 60, hh = Math.floor(t / 3600); tc.textContent = pad(hh) + ':' + pad(m) + ':' + pad(s) + ':' + pad(f); if (!v.paused) requestAnimationFrame(tick); }
+  v.addEventListener('play', tick); v.addEventListener('timeupdate', function () { if (v.paused) tick(); });
+  if (reduce) { v.pause(); v.removeAttribute('autoplay'); }
+  function toggleGuide() { var on = gd.hidden; gd.hidden = !on; gt.setAttribute('aria-pressed', on); gt.textContent = 'Frame guide: ' + (on ? 'on' : 'off') + ' (G)'; }
+  gt.onclick = toggleGuide; addEventListener('keydown', function (e) { if ((e.key === 'g' || e.key === 'G') && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) toggleGuide(); });
+})();
+</script>
+</body>
+</html>

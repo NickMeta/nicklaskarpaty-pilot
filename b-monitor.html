@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Nicklas Karpaty, FSF — Cinematographer / DoP, Gothenburg</title>
+  <meta name="description" content="Nicklas Karpaty, FSF — cinematographer and director of photography based in Gothenburg. Drama, documentary, branded films and virtual production.">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Montserrat:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* UTKAST B: Monitor. Sidan är ett gränssnitt, inte en rullande broschyr.
+       Filmen är huvudsaken, verken ligger i en klippbehållare som i ett kameramenysystem. */
+    :root { --bg:#08090a; --panel:#0f1113; --panel2:#14161a; --line:#23262b; --ink:#eeeae4; --dim:#8d8a84; --copper:#b87333; --copper-80:#c68f5c;
+      --head:"Jost","Futura",sans-serif; --body:"Montserrat","Gotham",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace; }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { margin: 0; background: var(--bg); color: var(--dim); font: 300 15px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; } img, video { display: block; max-width: 100%; }
+    :focus-visible { outline: 2px solid var(--copper); outline-offset: 2px; }
+    button { font: inherit; color: inherit; }
+    .mono { font: 400 12px/1 var(--mono); letter-spacing: .05em; }
+
+    .app { display: grid; grid-template-rows: 56px minmax(0,1fr) 64px; height: 100svh; min-height: 620px; }
+    .top { display: flex; align-items: center; gap: 24px; padding: 0 18px; border-bottom: 1px solid var(--line); background: var(--panel); }
+    .top img { height: 34px; width: auto; }
+    .top nav { display: flex; gap: 4px; margin-left: auto; }
+    .top nav a { font: 400 12px var(--mono); letter-spacing: .1em; text-transform: uppercase; padding: 9px 13px; color: var(--dim); border: 1px solid transparent; }
+    .top nav a:hover { color: var(--ink); border-color: var(--line); } .top nav a.cta { color: var(--ink); border-color: var(--copper); }
+    .top nav a.cta:hover { background: var(--copper); color: #000; }
+
+    .main { display: grid; grid-template-columns: minmax(0,1fr) 360px; min-height: 0; }
+    .viewer { position: relative; min-width: 0; background: #000; display: flex; flex-direction: column; justify-content: center; }
+    .screen { position: relative; aspect-ratio: 16/9; width: 100%; max-height: 100%; background: #000; margin: auto; }
+    .screen video, .screen iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; object-fit: cover; }
+    .screen video { filter: grayscale(1) contrast(1.06) brightness(.85); }
+    .osd { position: absolute; inset: 0; pointer-events: none; font: 400 11px/1 var(--mono); letter-spacing: .06em; color: rgba(238,234,228,.88); }
+    .osd .l { position: absolute; left: 3%; right: 3%; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .osd .a { top: 4%; } .osd .z { bottom: 4%; align-items: flex-end; }
+    .osd i { position: absolute; width: 18px; height: 18px; border: 0 solid var(--copper); } .osd i:nth-of-type(1){left:2%;top:3%;border-width:2px 0 0 2px}.osd i:nth-of-type(2){right:2%;top:3%;border-width:2px 2px 0 0}.osd i:nth-of-type(3){left:2%;bottom:3%;border-width:0 0 2px 2px}.osd i:nth-of-type(4){right:2%;bottom:3%;border-width:0 2px 2px 0}
+    .osd .vig { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.55), transparent 20%, transparent 55%, rgba(0,0,0,.85)); }
+    .osd .name { position: absolute; left: 4%; bottom: 13%; }
+    .osd h1 { font: 300 clamp(26px, 4.6vw, 66px)/1 var(--head); color: var(--ink); text-transform: uppercase; margin: 0; letter-spacing: .01em; } .osd h1 span { color: var(--copper); }
+    .osd .name p { margin: 10px 0 0; font: 400 clamp(12px, 1.3vw, 15px) var(--head); letter-spacing: .26em; text-transform: uppercase; color: var(--copper-80); }
+    .rec::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #d2412f; margin-right: 7px; animation: bl 1.6s steps(2) infinite; } @keyframes bl { 50% { opacity: .2; } }
+    .now { display: none; }
+    .viewer.playing .osd { display: none; } .viewer.playing .now { display: flex; }
+    .nowbar { position: absolute; left: 0; right: 0; top: 0; z-index: 3; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; background: linear-gradient(180deg, rgba(0,0,0,.8), transparent); }
+    .nowbar button { font: 400 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; background: rgba(0,0,0,.6); border: 1px solid var(--copper); padding: 8px 12px; cursor: pointer; } .nowbar button:hover { background: var(--copper); color: #000; }
+
+    .bin { display: flex; flex-direction: column; min-height: 0; border-left: 1px solid var(--line); background: var(--panel); }
+    .tabs { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--line); }
+    .tabs button { background: none; border: 0; border-right: 1px solid var(--line); padding: 13px 4px; font: 400 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--dim); cursor: pointer; }
+    .tabs button:last-child { border-right: 0; } .tabs button[aria-selected="true"] { color: var(--ink); background: var(--panel2); box-shadow: inset 0 -2px 0 var(--copper); }
+    .bin h2 { font: 300 22px var(--head); color: var(--ink); margin: 0; padding: 16px 16px 4px; text-transform: uppercase; letter-spacing: .05em; }
+    .bin .blurb { padding: 0 16px 12px; margin: 0; font-size: 13px; }
+    .clips { list-style: none; margin: 0; padding: 0; overflow: auto; flex: 1; border-top: 1px solid var(--line); }
+    .clips li button { display: grid; grid-template-columns: 112px 1fr; gap: 12px; align-items: center; width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid var(--line); padding: 10px 14px; cursor: pointer; }
+    .clips li button:hover, .clips li button.on { background: var(--panel2); } .clips li button.on { box-shadow: inset 2px 0 var(--copper); }
+    .clips img { width: 112px; aspect-ratio: 16/9; object-fit: cover; filter: grayscale(1); background: #000; } .clips li button:hover img, .clips li button.on img { filter: none; }
+    .clips b { display: block; font: 400 15px var(--head); color: var(--ink); letter-spacing: .02em; } .clips small { font: 400 11px var(--mono); color: var(--dim); }
+
+    .tl { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 18px; padding: 0 18px; border-top: 1px solid var(--line); background: var(--panel); }
+    .tl button.pp { width: 36px; height: 36px; border: 1px solid var(--line); background: none; cursor: pointer; } .tl button.pp:hover { border-color: var(--copper); }
+    .scrub { position: relative; height: 28px; cursor: pointer; } .scrub::before { content: ""; position: absolute; left: 0; right: 0; top: 13px; height: 2px; background: var(--line); }
+    .scrub .fill { position: absolute; left: 0; top: 13px; height: 2px; width: 0; background: var(--copper); } .scrub .head { position: absolute; top: 7px; width: 2px; height: 14px; background: var(--ink); left: 0; }
+    .scrub .tick { position: absolute; top: 9px; width: 1px; height: 10px; background: var(--dim); opacity: .6; }
+    .tc { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+    .info { background: var(--bg); border-top: 1px solid var(--line); padding: 90px 24px 60px; }
+    .info .grid { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 56px 64px; }
+    @media (min-width: 900px) { .info .grid { grid-template-columns: repeat(12, 1fr); } .p-about { grid-column: span 7; } .p-refs { grid-column: span 5; } .p-clients { grid-column: span 7; } .p-contact { grid-column: span 5; } }
+    .info h2 { font: 400 12px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--copper-80); margin: 0 0 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .p-about .row { display: grid; grid-template-columns: 150px 1fr; gap: 24px; } .p-about img { width: 150px; aspect-ratio: 1; object-fit: cover; }
+    .p-about p { margin: 0 0 14px; color: rgba(238,234,228,.82); max-width: 60ch; } .p-about .lead { font: 300 24px/1.25 var(--head); color: var(--ink); }
+    @media (max-width: 560px) { .p-about .row { grid-template-columns: 1fr; } }
+    .p-refs blockquote { margin: 0 0 16px; padding-left: 14px; border-left: 2px solid var(--copper); color: var(--ink); font-size: 14px; line-height: 1.55; } .p-refs blockquote small { display: block; margin-top: 6px; font: 400 11px var(--mono); color: var(--dim); letter-spacing: .05em; }
+    .p-clients ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .p-clients li { background: var(--panel); padding: 22px 12px; text-align: center; font: 400 14px var(--head); letter-spacing: .22em; text-transform: uppercase; color: rgba(238,234,228,.45); }
+    .p-contact a.big { display: block; font: 300 clamp(22px, 2.6vw, 32px) var(--head); color: var(--ink); margin-bottom: 8px; overflow-wrap: anywhere; } .p-contact a.big:hover { color: var(--copper-80); }
+    .p-contact .soc { margin-top: 22px; display: flex; gap: 8px 20px; flex-wrap: wrap; } .p-contact .soc a { font: 400 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; } .p-contact .soc a:hover { color: var(--copper-80); }
+    .note { font-size: 12px; color: #66625b; margin-top: 12px; }
+
+    @media (max-width: 960px) {
+      .app { display: block; height: auto; min-height: 0; } .top { position: sticky; top: 0; z-index: 20; }
+      .main { display: block; } .viewer { aspect-ratio: 16/9; } .bin { border-left: 0; border-top: 1px solid var(--line); } .clips { max-height: none; }
+      .tl { position: sticky; bottom: 0; z-index: 20; height: 56px; } .top nav a:not(.cta) { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="top"><a href="#" aria-label="Nicklas Karpaty, FSF"><img src="media/nk-logo.png" alt="Nicklas Karpaty, FSF" width="704" height="299"></a>
+    <nav aria-label="Primary"><a href="#info">About</a><a href="#refs">References</a><a class="cta" href="#contact">Contact</a></nav></header>
+
+  <div class="main">
+    <section class="viewer" id="viewer" aria-label="Showreel and clips">
+      <div class="screen" id="screen">
+        <video id="v" autoplay muted loop playsinline preload="auto" poster="media/hero-poster.jpg"><source src="media/hero.mp4" type="video/mp4"></video>
+        <div class="osd" aria-hidden="false">
+          <div class="vig"></div><i></i><i></i><i></i><i></i>
+          <div class="l a"><span>ARRI ALEXA 35 · 4.6K 3:2</span><span>25 fps · ISO 800 · 5600 K</span><span class="rec">REC</span></div>
+          <div class="name"><h1>Nicklas Karpaty<span>, FSF</span></h1><p>Cinematographer · Director of Photography</p></div>
+          <div class="l z"><span>SHOWREEL</span><span>Select a clip in the bin →</span></div>
+        </div>
+        <div class="nowbar now" id="nowbar"><span class="mono" id="nowt"></span><button type="button" id="back">Back to reel</button></div>
+      </div>
+    </section>
+
+    <aside class="bin" aria-label="Clip bin">
+      <div class="tabs" role="tablist" id="tabs"></div>
+      <h2 id="bt"></h2><p class="blurb" id="bb"></p>
+      <ul class="clips" id="clips"></ul>
+    </aside>
+  </div>
+
+  <div class="tl"><button class="pp" id="pp" type="button" aria-label="Play or pause">❚❚</button><div class="scrub" id="scrub" role="slider" aria-label="Seek showreel" tabindex="0"><div class="fill" id="fill"></div><div class="head" id="head"></div></div><span class="mono tc" id="tc">00:00:00:00</span></div>
+</div>
+
+<section class="info" id="info">
+  <div class="grid">
+    <div class="p-about"><h2>About</h2><div class="row"><img src="media/portrait.jpg" alt="Nicklas Karpaty" width="300" height="300"><div><p class="lead">Storytelling dictates the language.</p><p>Over 20 years as a cinematographer across international drama, festival films and premium commercial branding. A steady hand with an open, experimental eye.</p><p><a href="https://www.nicklaskarpaty.com/cinematography-process" style="color:var(--copper-80)">Read about my process</a></p></div></div></div>
+    <div class="p-refs" id="refs"><h2>References</h2><div id="rl"></div></div>
+    <div class="p-clients"><h2>Worked with</h2><ul id="cl"></ul><p class="note">Testloggor, byts mot riktiga.</p></div>
+    <div class="p-contact" id="contact"><h2>Contact</h2><a class="big" id="em" href="#"></a><a class="big" id="ph" href="#"></a><div class="soc" id="soc"></div></div>
+  </div>
+</section>
+
+<script src="data.js"></script><script src="player.js"></script>
+<script>
+(function () {
+  var $ = function (s) { return document.querySelector(s); };
+  var order = ['drama', 'doc', 'branded', 'vp'], cur = 'drama', screenEl = $('#screen'), viewer = $('#viewer');
+  var short = { drama: 'Drama', doc: 'Doc', branded: 'Branded', vp: 'VP' };
+  $('#tabs').innerHTML = order.map(function (g) { return '<button role="tab" type="button" data-g="' + g + '">' + short[g] + '</button>'; }).join('');
+  function bin(g) {
+    cur = g; var G = NK.genres[g];
+    document.querySelectorAll('#tabs button').forEach(function (b) { b.setAttribute('aria-selected', b.dataset.g === g); });
+    $('#bt').textContent = G.name; $('#bb').textContent = G.blurb;
+    $('#clips').innerHTML = NK.byGenre(g).map(function (it) { return '<li><button type="button" data-i="' + NK.items.indexOf(it) + '"><img loading="lazy" src="' + it.img + '" alt=""><span><b>' + it.t + '</b><small>' + it.s + (it.p === 'link' ? ' · opens site' : '') + '</small></span></button></li>'; }).join('');
+  }
+  $('#tabs').onclick = function (e) { var b = e.target.closest('button'); if (b) bin(b.dataset.g); };
+  var v = $('#v');
+  function reel() { var f = screenEl.querySelector('iframe'); if (f) f.remove(); viewer.classList.remove('playing'); v.style.display = ''; v.play && v.play().catch(function () {}); document.querySelectorAll('.clips button').forEach(function (b) { b.classList.remove('on'); }); }
+  $('#clips').onclick = function (e) {
+    var b = e.target.closest('button'); if (!b) return; var it = NK.items[+b.dataset.i];
+    if (it.p === 'link') { window.open(it.href, '_blank', 'noopener'); return; }
+    var old = screenEl.querySelector('iframe'); if (old) old.remove();
+    v.pause(); v.style.display = 'none'; viewer.classList.add('playing');
+    var f = document.createElement('iframe'); f.allow = 'autoplay; fullscreen; picture-in-picture'; f.allowFullscreen = true; f.title = it.t;
+    f.src = it.p === 'vimeo' ? 'https://player.vimeo.com/video/' + it.id + '?autoplay=1&title=0&byline=0&portrait=0' : 'https://www.youtube-nocookie.com/embed/' + it.id + '?autoplay=1&rel=0';
+    screenEl.insertBefore(f, screenEl.firstChild); $('#nowt').textContent = it.t + ' · ' + it.s;
+    document.querySelectorAll('.clips button').forEach(function (x) { x.classList.toggle('on', x === b); });
+    if (matchMedia('(max-width: 960px)').matches) viewer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+  $('#back').onclick = reel;
+  bin('drama');
+  // Tidslinje
+  var fill = $('#fill'), head = $('#head'), tc = $('#tc'), scrub = $('#scrub'), pp = $('#pp');
+  for (var k = 1; k < 10; k++) { var t = document.createElement('i'); t.className = 'tick'; t.style.left = (k * 10) + '%'; scrub.appendChild(t); }
+  function p2(n) { return (n < 10 ? '0' : '') + n; }
+  function upd() { var d = v.duration || 42, t = v.currentTime || 0, r = Math.min(1, t / d); fill.style.width = r * 100 + '%'; head.style.left = r * 100 + '%'; tc.textContent = p2(Math.floor(t / 3600)) + ':' + p2(Math.floor(t / 60) % 60) + ':' + p2(Math.floor(t) % 60) + ':' + p2(Math.floor((t % 1) * 25)); if (!v.paused) requestAnimationFrame(upd); }
+  v.addEventListener('play', function () { pp.textContent = '❚❚'; upd(); }); v.addEventListener('pause', function () { pp.textContent = '▶'; upd(); }); v.addEventListener('timeupdate', function () { if (v.paused) upd(); });
+  pp.onclick = function () { if (viewer.classList.contains('playing')) reel(); else (v.paused ? v.play() : v.pause()); };
+  scrub.addEventListener('click', function (e) { var r = scrub.getBoundingClientRect(); v.currentTime = ((e.clientX - r.left) / r.width) * (v.duration || 42); upd(); });
+  scrub.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') v.currentTime += 3; if (e.key === 'ArrowLeft') v.currentTime -= 3; });
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.pause(); v.removeAttribute('autoplay'); }
+  // Info
+  $('#rl').innerHTML = NK.quotes.map(function (q) { return '<blockquote>' + q.q + '<small>' + q.n + ' · ' + q.r + '</small></blockquote>'; }).join('');
+  $('#cl').innerHTML = NK.clients.map(function (c) { return '<li>' + c + '</li>'; }).join('');
+  $('#em').href = 'mailto:' + NK.contact.email; $('#em').textContent = NK.contact.email; $('#ph').href = 'tel:' + NK.contact.tel; $('#ph').textContent = NK.contact.phone;
+  $('#soc').innerHTML = NK.social.map(function (s) { return '<a href="' + s[1] + '" rel="noopener">' + s[0] + '</a>'; }).join('');
+})();
+</script>
+</body>
+</html>
