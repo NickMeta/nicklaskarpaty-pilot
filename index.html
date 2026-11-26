@@ -2,33 +2,222 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex">
-  <title>Pilot — nicklaskarpaty.com 2.0</title>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-  <style>
-    :root { --bg:#000; --ink:#f1ece6; --dim:#9a948c; --line:rgba(241,236,230,.14); --copper:#b87333; }
-    * { box-sizing: border-box; } body { margin: 0; background: var(--bg); color: var(--dim); font: 300 16px/1.7 Montserrat, system-ui, sans-serif; padding: clamp(24px, 6vw, 80px); }
-    h1 { font: 300 clamp(30px, 5vw, 56px)/1.05 Jost, sans-serif; color: var(--ink); margin: 0 0 8px; text-transform: uppercase; letter-spacing: .04em; } .lead { max-width: 60ch; margin: 0 0 48px; }
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; max-width: 1200px; }
-    a.card { display: block; border: 1px solid var(--line); padding: 26px; color: inherit; text-decoration: none; transition: border-color .2s, background .2s; } a.card:hover, a.card:focus-visible { border-color: var(--copper); background: #0a0908; outline: 0; }
-    a.card h2 { font: 400 24px Jost, sans-serif; color: var(--ink); margin: 0 0 8px; text-transform: uppercase; letter-spacing: .06em; } a.card small { display: block; margin-top: 14px; font: 400 12px Jost, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: var(--copper); }
-    h3 { font: 400 13px Jost, sans-serif; letter-spacing: .22em; text-transform: uppercase; color: var(--copper); margin: 56px 0 10px; } ul { margin: 0; padding-left: 18px; max-width: 70ch; } li { margin-bottom: 6px; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Nicklas Karpaty, FSF | Cinematographer &amp; Director of Photography, Stockholm</title>
+  <meta name="description" content="Nicklas Karpaty, FSF is a director of photography for drama, documentary, commercials and virtual production. Stockholm &amp; Gothenburg, working internationally.">
+  <link rel="canonical" href="https://www.nicklaskarpaty.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nicklas Karpaty, FSF">
+  <meta property="og:title" content="Nicklas Karpaty, FSF | Cinematographer &amp; Director of Photography, Stockholm">
+  <meta property="og:description" content="Nicklas Karpaty, FSF is a director of photography for drama, documentary, commercials and virtual production. Stockholm &amp; Gothenburg, working internationally.">
+  <meta property="og:url" content="https://www.nicklaskarpaty.com/">
+  <meta property="og:image" content="https://www.nicklaskarpaty.com/media/hero-poster.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="/nicklaskarpaty-pilot/media/nlc-symbol.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Montserrat:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/nicklaskarpaty-pilot/assets/site.css">
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Person",
+   "@id": "https://www.nicklaskarpaty.com/#person",
+   "name": "Nicklas Karpaty",
+   "honorificSuffix": "FSF",
+   "jobTitle": "Cinematographer, Director of Photography",
+   "url": "https://www.nicklaskarpaty.com/",
+   "image": "https://www.nicklaskarpaty.com/media/portrait.jpg",
+   "email": "mailto:info@nicklaskarpaty.com",
+   "telephone": "+46703612049",
+   "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Stockholm",
+    "addressCountry": "SE"
+   },
+   "workLocation": [
+    {
+     "@type": "Place",
+     "name": "Stockholm, Sweden"
+    },
+    {
+     "@type": "Place",
+     "name": "Gothenburg, Sweden"
+    }
+   ],
+   "worksFor": {
+    "@id": "https://www.nicklaskarpaty.com/#org"
+   },
+   "memberOf": {
+    "@type": "Organization",
+    "name": "FSF, Swedish Society of Cinematographers",
+    "alternateName": "Föreningen Sveriges Filmfotografer"
+   },
+   "knowsAbout": [
+    "Cinematography",
+    "Drama and fiction",
+    "Documentary",
+    "Commercials",
+    "Branded film",
+    "Virtual Production",
+    "In-camera VFX",
+    "AI previsualisation",
+    "Colour grading"
+   ],
+   "sameAs": [
+    "https://www.imdb.com/name/nm1597947/",
+    "https://vimeo.com/nicklaskarpaty",
+    "https://www.linkedin.com/in/nkarpaty/",
+    "https://www.instagram.com/nicklaskarpaty_dp",
+    "https://www.facebook.com/cinematographer.nk"
+   ]
+  },
+  {
+   "@type": "Organization",
+   "@id": "https://www.nicklaskarpaty.com/#org",
+   "name": "Nordic Light Cinematography AB",
+   "url": "https://www.nicklaskarpaty.com/",
+   "logo": "https://www.nicklaskarpaty.com/media/nlc-symbol.png",
+   "founder": {
+    "@id": "https://www.nicklaskarpaty.com/#person"
+   },
+   "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Stockholm",
+    "addressCountry": "SE"
+   },
+   "areaServed": [
+    "Stockholm",
+    "Gothenburg",
+    "Sweden",
+    "Europe",
+    "Worldwide"
+   ]
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://www.nicklaskarpaty.com/#site",
+   "url": "https://www.nicklaskarpaty.com/",
+   "name": "Nicklas Karpaty, FSF",
+   "publisher": {
+    "@id": "https://www.nicklaskarpaty.com/#person"
+   },
+   "inLanguage": "en"
+  }
+ ]
+}
+  </script>
 </head>
 <body>
-  <h1>Pilot, fyra riktningar</h1>
-  <p class="lead">Samma innehåll i fyra olika layouter. D är det nya premiumutkastet. Filmen i toppen är Another Lighthouse. Verk, stillbilder och videor hämtas från nuvarande sidan.</p>
-  <div class="cards">
-    <a class="card" href="d-premium.html"><h2>D. Premium</h2>Nytt utkast. Du styr ljuset över filmen, väljer genre direkt och ser hela scener. Riktiga loggor och graderingsjämförelse.<small>Öppna</small></a>
-    <a class="card" href="a-refined.html"><h2>A. Förfinad</h2>Tydliga block per genre, Alexa 35-ramguide över filmen, subtila loggor och en smal referensrad.<small>Öppna</small></a>
-    <a class="card" href="b-monitor.html"><h2>B. Monitor</h2>Sidan är ett gränssnitt. Filmen i mitten, verken i en klippbehållare, tidslinje längst ned.<small>Öppna</small></a>
-    <a class="card" href="c-intent.html"><h2>C. Behovet först</h2>Ljus och typografisk. Besökaren väljer vad filmen är, och ser bevis och kontakt direkt.<small>Öppna</small></a>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header" id="top"><div class="wrap">
+  <a class="brand" href="/nicklaskarpaty-pilot/" aria-label="Nicklas Karpaty, FSF, home"><img src="/nicklaskarpaty-pilot/media/nk-logo.png" alt="Nicklas Karpaty, FSF" width="704" height="299"></a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav class="nav" id="nav" aria-label="Primary">
+    <a href="/nicklaskarpaty-pilot/drama-cinematography/">Drama</a><a href="https://www.nicklaskarpaty.com/documentary-cinematography">Documentary</a><a href="https://www.nicklaskarpaty.com/branded-cinematography">Branded</a><a href="https://www.nicklaskarpaty.com/virtualproduction-cinematography">VP</a><a href="/nicklaskarpaty-pilot/#about">About</a><a class="cta" href="/nicklaskarpaty-pilot/#contact">Contact</a>
+  </nav>
+</div></header>
+<main id="main">
+<section class="hero" aria-label="Showreel">
+  <video id="hero-video" autoplay muted loop playsinline preload="metadata" poster="/nicklaskarpaty-pilot/media/hero-poster.jpg"><source src="/nicklaskarpaty-pilot/media/hero.mp4" type="video/mp4"></video>
+  <div class="guide" id="guide" aria-hidden="true">
+    <div class="g-top"></div><div class="g-bot"></div><div class="g-mask"></div>
+    <div class="g-frame"><i></i><i></i><i></i><i></i></div><div class="g-cross"></div>
+    <div class="hud t"><span><b>ARRI ALEXA 35</b></span><span>4.6K 3:2 · S35</span><span>25 fps · 180°</span><span>ISO 800 · 5600 K</span><span class="rec">REC <span class="tc" id="tc">00:00:00:00</span></span></div>
+    <div class="hud b"><span class="opt">2.39:1</span><span>T2.8 · 35 mm</span><span class="opt">LUT: NLC</span></div>
   </div>
-  <h3>Om videorna inte spelas</h3>
-  <ul>
-    <li>Vimeo-filmerna på nuvarande sidan kan vara låsta till domänen nicklaskarpaty.com. Då visar Vimeo ett felmeddelande i spelaren. Det löses i Vimeos inställningar för inbäddning.</li>
-    <li>Branded-filmer som ligger direkt på Wix (Zeekr, Volvo, LO, Reach for Change) öppnar nuvarande sidan i en ny flik.</li>
-  </ul>
+  <div class="hero-copy"><div class="wrap">
+    <p class="role">Cinematographer · Director of Photography</p>
+    <h1>Nicklas Karpaty<span class="fsf">, FSF</span></h1>
+    <p class="where">Stockholm & Gothenburg, working internationally</p>
+    <button class="reel" type="button" data-play="vimeo:908412577" data-title="Showreel · Nicklas Karpaty, FSF"><svg viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z"/></svg>Play showreel</button>
+  </div></div>
+  <button class="gtoggle" id="gt" type="button" aria-pressed="true">Frame guide: on</button>
+</section>
+
+<section class="logo-row" aria-label="Clients"><div class="wrap">
+  <p class="label-sm">Trusted by</p>
+  <ul class="logos"><li><img class="lg" style="--h:15px" src="https://upload.wikimedia.org/wikipedia/commons/5/54/Volvo_logo.svg" alt="Volvo" loading="lazy"></li><li><img class="lg" style="--h:26px" src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Polestar_Logo.svg" alt="Polestar" loading="lazy"></li><li><img class="lg" style="--h:20px" src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Zeekr_logo.svg" alt="Zeekr" loading="lazy"></li><li><img class="lg" style="--h:40px" src="https://upload.wikimedia.org/wikipedia/commons/3/39/SVT_2016.svg" alt="SVT" loading="lazy"></li><li><img class="lg" style="--h:46px" src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Landsorganisationen_i_Sverige_logo.svg" alt="LO" loading="lazy"></li><li><img class="lg" style="--h:26px" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Logo_Ascom.svg" alt="Ascom" loading="lazy"></li></ul>
+</div></section>
+
+<div id="work">
+<section class="block" id="drama" aria-labelledby="drama-h"><div class="wrap grid">
+  <div class="label"><h2 id="drama-h">Drama &amp; Fiction</h2><p>Series, features and festival shorts. Light and lens chosen for the character, not for the frame on its own.</p><a class="tlink" href="/nicklaskarpaty-pilot/drama-cinematography/">More drama</a></div>
+  <div class="tiles"><button class="tile" type="button" data-play="vimeo:905125396" data-title="Black Lake S2 · Series, short sequence"><div class="frame"><img src="https://i.vimeocdn.com/video/1786249766-18f5787ae5be890677a21ea2e534db5dfbacf83149ac4ed9a065fac9e1ce5164-d" alt="Still from Black Lake S2" loading="lazy"><span class="act">&#9654; PLAY</span></div><div class="meta">Black Lake S2<small>Series, short sequence</small></div></button><button class="tile" type="button" data-play="vimeo:904803629" data-title="Belief · Short fiction"><div class="frame"><img src="https://i.vimeocdn.com/video/1785649490-4cc3ab5755b26600eb275c687a155ec292c36f5ee6025c611b277db7b64a816c-d" alt="Still from Belief" loading="lazy"><span class="act">&#9654; PLAY</span></div><div class="meta">Belief<small>Short fiction</small></div></button><button class="tile" type="button" data-play="vimeo:905171684" data-title="Golden Disc · Short sequence"><div class="frame"><img src="https://i.vimeocdn.com/video/1786312084-34e5a7f2259132ea88b90a78019e351739599fb2f4753c169e5d92d7fb51348a-d" alt="Still from Golden Disc" loading="lazy"><span class="act">&#9654; PLAY</span></div><div class="meta">Golden Disc<small>Short sequence</small></div></button><button class="tile" type="button" data-play="vimeo:201880526" data-title="The Silence · Drama"><div class="frame"><img src="https://i.vimeocdn.com/video/1785661089-8e2552cc61a32eb39164d51c3f85380ef4c0ffd38960b6f8f636489e58148988-d_1920x1080" alt="Still from The Silence" loading="lazy"><span class="act">&#9654; PLAY</span></div><div class="meta">The Silence<small>Drama</small></div></button><button class="tile" type="button" data-play="vimeo:251651412" data-title="SVT Molanders · Intro scene"><div class="frame"><img src="https://i.vimeocdn.com/video/678164383-f007c2d7f6376d7f7d7e7061a2ba3783233a787367a7419a9358dec904ae6c57-d" alt="Still from SVT Molanders" loading="lazy"><span class="act">&#9654; PLAY</span></div><div class="meta">SVT Molanders<small>Intro scene</small></div></button></div>
+</div></section>
+<section class="block" id="doc" aria-labelledby="doc-h"><div class="wrap grid">
+  <div class="label"><h2 id="doc-h">Documentary</h2><p>Observational work where nothing happens twice. Being ready matters more than being in control.</p><a class="tlink" href="https://www.nicklaskarpaty.com/documentary-cinematography">More documentary</a></div>
+  <div class="tiles"><a class="tile" href="https://www.nicklaskarpaty.com/documentary-cinematography"><div class="frame"><img src="https://static.wixstatic.com/media/f828c5_322523cf0cf04e52b4bdc170a3c029fb~mv2.jpg/v1/fill/w_960,h_540,al_c,q_85,enc_auto/file.jpg" alt="Still from Documentary" loading="lazy"><span class="act">OPEN</span></div><div class="meta">Documentary<small>Observational</small></div></a><a class="tile" href="https://www.nicklaskarpaty.com/documentary-cinematography"><div class="frame"><img src="https://static.wixstatic.com/media/f828c5_d0af2914fbfb43589dcea7e99f9160a6~mv2.jpg/v1/fill/w_960,h_540,al_c,q_85,enc_auto/file.jpg" alt="Still from Documentary" loading="lazy"><span class="act">OPEN</span></div><div class="meta">Documentary<small>Long-form</small></div></a><a class="tile" href="https://www.nicklaskarpaty.com/documentary-cinematography"><div class="frame"><img src="https://static.wixstatic.com/media/f828c5_22d631f381f049c9adc8bc2d0926284b~mv2.jpg/v1/fill/w_960,h_540,al_c,q_85,enc_auto/file.jpg" alt="Still from Documentary" loading="lazy"><span class="act">OPEN</span></div><div class="meta">Documentary<small>On location</small></div></a><a class="tile" href="https://www.nicklaskarpaty.com/documentary-cinematography"><div class="frame"><img src="https://static.wixstatic.com/media/f828c5_26cadcef717f475299d909816b581e82~mv2.jpg/v1/fill/w_960,h_540,al_c,q_85,enc_auto/file.jpg" alt="Still from Documentary" loading="lazy"><span class="act">OPEN</span></div><div class="meta">Documentary<small>Observational</small></div></a></div>
+</div></section>
+<section class="block" id="branded" aria-labelledby="branded-h"><div class="wrap grid">
+  <div class="label"><h2 id="branded-h">Branded &amp; Fashion</h2><p>Campaigns and brand films for agencies and brands, from Nordic design to international reach.</p><a class="tlink" href="https://www.nicklaskarpaty.com/branded-cinematography">More branded</a></div>
+  <div class="tiles"><a class="tile" href="https://www.nicklaskarpaty.com/branded-cinematography"><div class="frame"><img src="https://static.wixstatic.com/media/f828c5_e203017198d947bc924ce6f3e8b7063e~mv2.png/v1/fill/w_960,h_540,al_c,q_85,enc_auto/file.jpg" alt="Still from ZEEKR 007" loading="lazy"><span class="act">OPEN</span></div><div class="meta">ZEEKR 007<small>Design film</small></div></a><a class="tile" href="https://www.nicklaskarpaty.com/branded-cinematography"><div class="frame"><img src="https://static.wixstatic.com/media/f828c5_2f7e37be8a364a9dbc5de43046c63c3d~mv2.png/v1/fill/w_960,h_540,al_c,q_85,enc_auto/file.jpg" alt="Still from Volvo, In good hands" loading="lazy"><span class="act">OPEN</span></div><div class="meta">Volvo, In good hands<small>Campaign film</small></div></a><button class="tile" type="button" data-play="youtube:GmVsIdWZknA" data-title="Polestar Precept · From Concept to Car, ep. 3"><div class="frame"><img src="https://i.ytimg.com/vi/GmVsIdWZknA/maxresdefault.jpg" alt="Still from Polestar Precept" loading="lazy"><span class="act">&#9654; PLAY</span></div><div class="meta">Polestar Precept<small>From Concept to Car, ep. 3</small></div></button><a class="tile" href="https://www.nicklaskarpaty.com/branded-cinematography"><div class="frame"><img src="https://static.wixstatic.com/media/f828c5_6b77a66c0b5840ae8abe7586c4413f46~mv2.png/v1/fill/w_960,h_540,al_c,q_85,enc_auto/file.jpg" alt="Still from LO" loading="lazy"><span class="act">OPEN</span></div><div class="meta">LO<small>Campaign film</small></div></a><a class="tile" href="https://www.nicklaskarpaty.com/branded-cinematography"><div class="frame"><img src="https://static.wixstatic.com/media/f828c5_109ab19d596c4a8c88fca14ec5e3fdc5~mv2.png/v1/fill/w_960,h_540,al_c,q_85,enc_auto/file.jpg" alt="Still from Reach for Change" loading="lazy"><span class="act">OPEN</span></div><div class="meta">Reach for Change<small>Film</small></div></a><button class="tile" type="button" data-play="youtube:ILgqP-ep7sE" data-title="Speedy Casino · TVC"><div class="frame"><img src="https://i.ytimg.com/vi/ILgqP-ep7sE/maxresdefault.jpg" alt="Still from Speedy Casino" loading="lazy"><span class="act">&#9654; PLAY</span></div><div class="meta">Speedy Casino<small>TVC</small></div></button></div>
+</div></section>
+<section class="block" id="vp" aria-labelledby="vp-h"><div class="wrap grid">
+  <div class="label"><h2 id="vp-h">Virtual Production</h2><p>LED volume and in-camera VFX. I tested a volume to answer one question for producers: when is it worth it?</p><a class="tlink" href="https://www.nicklaskarpaty.com/virtualproduction-cinematography">More virtual production</a></div>
+  <a class="postcard" href="/nicklaskarpaty-pilot/post/virtual-production-led-volume-cinematographer/">
+  <div class="frame"><img src="https://static.wixstatic.com/media/f828c5_a3a2a02d6df84af889b2c27bcddb16e9~mv2.jpg/v1/fill/w_1600,h_900,al_c,q_85,enc_auto/file.jpg" alt="LED volume at Stockholm VP Studio" loading="lazy"></div>
+  <div class="txt"><p class="label-sm">From the blog</p><h3>What I Learned Testing an LED Volume as a Cinematographer</h3><p>An honest assessment of what an LED volume delivers on set, and where it doesn't fit.</p><span class="tlink">Read the article</span></div>
+</a>
+</div></section></div>
+
+<section class="refs" id="references" aria-labelledby="refs-h"><div class="wrap">
+  <h2 class="label-sm" id="refs-h">References</h2>
+  <div class="qbox" aria-live="polite"><figure class="on"><blockquote>Nicklas is a source of reassurance for a director, while also possessing an open, experimental, and creative eye.</blockquote><figcaption><b>Peter Lindmark</b>Film Director, Writer</figcaption></figure><figure><blockquote>His technical decisions are never just decorative. They serve emotion, purpose and story. As a storyteller, Nicklas is quite simply my preferred creative partner.</blockquote><figcaption><b>David Stavenow</b>Film Director, Writer</figcaption></figure><figure><blockquote>A highly skilled Director of Photography. Very professional and a pleasure to work with. He always has the best interest of the production in mind without compromising quality.</blockquote><figcaption><b>Karin Sylwan</b>Project Manager</figcaption></figure><figure><blockquote>I can always rely on his flexibility, sense of style, and skill as a cinematographer. A clear recommendation when a director has yet to choose a Director of Photography.</blockquote><figcaption><b>Setareh Lundgren</b>Film Producer</figcaption></figure></div>
+  <div class="qctl"><span class="qdots" aria-hidden="true"><i></i><i></i><i></i><i></i></span><button id="qp" type="button" aria-label="Previous reference">&larr;</button><button id="qn" type="button" aria-label="Next reference">&rarr;</button></div>
+</div></section>
+
+<section class="craft" aria-labelledby="craft-h"><div class="wrap">
+  <div>
+    <h2 id="craft-h">From sensor to screen</h2>
+    <p>The look is decided before the camera rolls: lens, light, exposure and a show LUT built for the story. The grade finishes what was planned on set.</p>
+    <p class="note">Test image. Replaced with a real LOG frame and its final grade.</p>
+  </div>
+  <div class="wipe">
+    <img src="/nicklaskarpaty-pilot/media/grade-flat.jpg" alt="The frame as recorded in LOG, before grading" loading="lazy">
+    <img class="after" src="/nicklaskarpaty-pilot/media/grade-graded.jpg" alt="The same frame after the final grade" loading="lazy">
+    <span class="bar"></span><span class="tag l">LOG</span><span class="tag r">GRADE</span>
+    <input id="wr" type="range" min="0" max="100" value="50" aria-label="Compare the LOG image with the final grade">
+  </div>
+</div></section>
+
+<section class="about" id="about" aria-labelledby="about-h"><div class="wrap">
+  <img src="/nicklaskarpaty-pilot/media/portrait.jpg" alt="Portrait of Nicklas Karpaty, FSF" width="1200" height="1200" loading="lazy">
+  <div>
+    <h2 id="about-h">About</h2>
+    <p class="lead">Storytelling dictates the language.</p>
+    <p>I've worked as a cinematographer for more than 20 years, across international drama, award-winning festival films and premium commercial work. I don't carry a fixed style from job to job. Each script tells me what the image needs to be.</p>
+    <p>Directors tend to describe me as a steady hand with an open, experimental eye. Clear communication and structure on set, and room to try things. I'm rooted in traditional craft, and I use new tools where they earn their place, such as AI-driven previsualisation that lets us test ideas long before the camera rolls.</p>
+    <p>I run Nordic Light Cinematography AB from Stockholm and work from Gothenburg as well, on productions in Sweden and abroad. I'm a member of FSF, the Swedish Society of Cinematographers.</p>
+    <div class="links"><a class="tlink" href="https://www.nicklaskarpaty.com/cinematography-process">My process</a><a class="tlink" href="https://www.nicklaskarpaty.com/downloads">CV &amp; downloads</a></div>
+  </div>
+</div></section>
+</main>
+
+<section class="contact" id="contact" aria-labelledby="contact-h">
+  <div class="wrap">
+    <h2 id="contact-h">Contact</h2>
+    <a class="big" href="mailto:info@nicklaskarpaty.com">info@nicklaskarpaty.com</a>
+    <a class="big" href="tel:+46703612049">+46 703 61 20 49</a>
+    <p>Stockholm & Gothenburg, working internationally.</p>
+    <div class="social"><a href="https://www.imdb.com/name/nm1597947/" rel="noopener">IMDb</a><a href="https://vimeo.com/nicklaskarpaty" rel="noopener">Vimeo</a><a href="https://www.linkedin.com/in/nkarpaty/" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/nicklaskarpaty_dp" rel="noopener">Instagram</a><a href="https://www.facebook.com/cinematographer.nk" rel="noopener">Facebook</a></div>
+  </div>
+  <div class="logo-row" aria-label="Camera systems"><div class="wrap">
+    <p class="label-sm">Shooting on</p>
+    <ul class="logos four"><li><img class="lg" style="--h:30px" src="https://upload.wikimedia.org/wikipedia/commons/d/de/Arri_logo.svg" alt="ARRI" loading="lazy"></li><li><img class="lg" style="--h:46px" src="https://upload.wikimedia.org/wikipedia/commons/7/73/Panavision_logo.svg" alt="Panavision" loading="lazy"></li><li><img class="lg" style="--h:64px" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Sony_CineAlta_logo_V3.png" alt="Sony CineAlta" loading="lazy"></li><li><img class="lg jpg" style="--h:70px" src="https://upload.wikimedia.org/wikipedia/en/3/36/Red-Camera-Logo.jpeg" alt="RED Digital Cinema" loading="lazy"></li></ul>
+  </div></div>
+</section>
+<footer><div class="wrap">
+  <img src="/nicklaskarpaty-pilot/media/nlc-symbol.png" alt="Nordic Light Cinematography" width="746" height="742" loading="lazy">
+  <nav aria-label="Footer">
+    <a href="https://www.nicklaskarpaty.com/cinematography-process">Process</a><a href="https://www.nicklaskarpaty.com/blog">Blog</a><a href="https://www.nicklaskarpaty.com/downloads">CV &amp; downloads</a><a href="https://www.nicklaskarpaty.com/privacypolicy">Privacy</a><a href="https://www.nicklaskarpaty.com/termsandconditions">Terms</a>
+  </nav>
+  <span>© 2026 Nicklas Karpaty, FSF · Nordic Light Cinematography AB</span>
+</div></footer>
+<script src="/nicklaskarpaty-pilot/assets/site.js" defer></script>
 </body>
 </html>

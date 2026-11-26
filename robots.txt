@@ -1,2 +1,3 @@
+# Testadress, spärrad för sökmotorer
 User-agent: *
 Disallow: /
