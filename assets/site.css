@@ -88,6 +88,12 @@ p { margin: 0; }
 .logos li { display: flex; align-items: center; justify-content: center; min-height: 44px; }
 .lg { height: var(--h, 26px); width: auto; max-width: 100%; filter: brightness(0) invert(1); opacity: .6; transition: opacity .25s; }
 .lg:hover { opacity: 1; }
+/* Kundloggor: små, jämnstora, i samma gråton */
+.logos.clients { grid-template-columns: repeat(4, 1fr); gap: 26px 18px; }
+@media (min-width: 760px) { .logos.clients { grid-template-columns: repeat(8, 1fr); gap: 34px 24px; } }
+.logos.clients li { min-height: 40px; }
+.lg.cl { height: auto; max-height: 40px; filter: none; opacity: .55; }
+.lg.cl:hover { opacity: .95; }
 .lg.jpg { filter: grayscale(1) invert(1) contrast(1.7) brightness(1.5); mix-blend-mode: screen; }
 .lgtxt { font: 400 14px/1 var(--head); letter-spacing: .24em; text-transform: uppercase; color: rgba(241,236,230,.55); }
 

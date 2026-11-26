@@ -44,19 +44,19 @@ FILMS = {
         {"t": "SVT Molanders", "s": "Intro scene", "p": "vimeo", "id": "251651412", "img": vimeo_img("678164383-f007c2d7f6376d7f7d7e7061a2ba3783233a787367a7419a9358dec904ae6c57-d")},
     ],
     "branded": [
-        {"t": "ZEEKR 007", "s": "Design film", "p": "link", "href": "/branded-cinematography", "img": wix("f828c5_e203017198d947bc924ce6f3e8b7063e~mv2.png", 960, 540)},
-        {"t": "Volvo, In good hands", "s": "Campaign film", "p": "link", "href": "/branded-cinematography", "img": wix("f828c5_2f7e37be8a364a9dbc5de43046c63c3d~mv2.png", 960, 540)},
+        {"t": "ZEEKR 007", "s": "Design film", "p": "link", "href": "/branded-cinematography", "img": "media/img/branded-zeekr-007.jpg"},
+        {"t": "Volvo, In good hands", "s": "Campaign film", "p": "link", "href": "/branded-cinematography", "img": "media/img/branded-volvo-in-good-hands.jpg"},
         {"t": "Polestar Precept", "s": "From Concept to Car, ep. 3", "p": "youtube", "id": "GmVsIdWZknA", "img": yt_img("GmVsIdWZknA")},
-        {"t": "LO", "s": "Campaign film", "p": "link", "href": "/branded-cinematography", "img": wix("f828c5_6b77a66c0b5840ae8abe7586c4413f46~mv2.png", 960, 540)},
-        {"t": "Reach for Change", "s": "Film", "p": "link", "href": "/branded-cinematography", "img": wix("f828c5_109ab19d596c4a8c88fca14ec5e3fdc5~mv2.png", 960, 540)},
+        {"t": "LO", "s": "Campaign film", "p": "link", "href": "/branded-cinematography", "img": "media/img/branded-lo.jpg"},
+        {"t": "Reach for Change", "s": "Film", "p": "link", "href": "/branded-cinematography", "img": "media/img/branded-reach-for-change.jpg"},
         {"t": "Speedy Casino", "s": "TVC", "p": "youtube", "id": "ILgqP-ep7sE", "img": yt_img("ILgqP-ep7sE")},
     ],
     # Stillbilder från dokumentärsidan på Wix. Fler klipp kommer.
     "doc": [
-        {"t": "Documentary", "s": "Observational", "p": "link", "href": "/documentary-cinematography", "img": wix("f828c5_322523cf0cf04e52b4bdc170a3c029fb~mv2.jpg", 960, 540)},
-        {"t": "Documentary", "s": "Long-form", "p": "link", "href": "/documentary-cinematography", "img": wix("f828c5_d0af2914fbfb43589dcea7e99f9160a6~mv2.jpg", 960, 540)},
-        {"t": "Documentary", "s": "On location", "p": "link", "href": "/documentary-cinematography", "img": wix("f828c5_22d631f381f049c9adc8bc2d0926284b~mv2.jpg", 960, 540)},
-        {"t": "Documentary", "s": "Observational", "p": "link", "href": "/documentary-cinematography", "img": wix("f828c5_26cadcef717f475299d909816b581e82~mv2.jpg", 960, 540)},
+        {"t": "Documentary", "s": "Observational", "p": "link", "href": "/documentary-cinematography", "img": "media/img/doc-01.jpg"},
+        {"t": "Documentary", "s": "Long-form", "p": "link", "href": "/documentary-cinematography", "img": "media/img/doc-02.jpg"},
+        {"t": "Documentary", "s": "On location", "p": "link", "href": "/documentary-cinematography", "img": "media/img/doc-03.jpg"},
+        {"t": "Documentary", "s": "Observational", "p": "link", "href": "/documentary-cinematography", "img": "media/img/doc-04.jpg"},
     ],
 }
 
@@ -74,7 +74,7 @@ GENRES = [
 VP_POST = {
     "slug": "virtual-production-led-volume-cinematographer",
     "title": "What I Learned Testing an LED Volume as a Cinematographer",
-    "img": wix("f828c5_a3a2a02d6df84af889b2c27bcddb16e9~mv2.jpg", 1600, 900),
+    "img": "media/img/vp-led-volume-hero.jpg",
 }
 
 # Citaten är hämtade från Wix-startsidan. Där står namnet före citatet
@@ -89,14 +89,15 @@ QUOTES = [
 
 # Loggor länkas från Wikimedia Commons i piloten. Inför lansering: egna kopior i media/logos/.
 WM = "https://upload.wikimedia.org/wikipedia/"
-CLIENTS = [
-    ("Volvo", WM + "commons/5/54/Volvo_logo.svg", 15),
-    ("Polestar", WM + "commons/f/f0/Polestar_Logo.svg", 26),
-    ("Zeekr", WM + "commons/1/1e/Zeekr_logo.svg", 20),
-    ("SVT", WM + "commons/3/39/SVT_2016.svg", 40),
-    ("LO", WM + "commons/4/4f/Landsorganisationen_i_Sverige_logo.svg", 46),
-    ("Ascom", WM + "commons/e/ef/Logo_Ascom.svg", 26),
-]
+# Kundloggor från Wix-sidan, utklippta till vita PNG-filer i media/logos/.
+CLIENTS = [(n, "media/logos/" + f + ".png") for n, f in [
+    ("Google", "google"), ("Liseberg", "liseberg"), ("Polestar", "polestar"), ("Ascom", "ascom"),
+    ("IKEA", "ikea"), ("Pinchos", "pinchos"), ("Spotify", "spotify"), ("BBC", "bbc"),
+    ("ICA", "ica"), ("AstraZeneca", "astrazeneca"), ("Zeekr", "zeekr"), ("Lynk & Co", "lynk-co"),
+    ("Android", "android"), ("JM", "jm"), ("Mat.se", "mat-se"), ("Einride", "einride"),
+    ("H&M", "hm"), ("Uniqlo", "uniqlo"), ("Apoteket", "apoteket"), ("Klarna", "klarna"),
+    ("AJ", "aj"), ("Reach for Change", "reach-for-change"), ("Schweppes", "schweppes"), ("Stena Line", "stena-line"),
+]]
 GEAR = [
     ("ARRI", WM + "commons/d/de/Arri_logo.svg", 30, False),
     ("Panavision", WM + "commons/7/73/Panavision_logo.svg", 46, False),

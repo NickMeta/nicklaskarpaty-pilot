@@ -40,6 +40,29 @@ def asset(p):
     return BASE + "/" + p
 
 
+def src(p):
+    """Bildadress: lokala filer får sajtens bas, externa lämnas orörda."""
+    return p if p.startswith("http") else asset(p)
+
+
+def abs_url(p):
+    return p if p.startswith("http") else SITE + "/" + p
+
+
+def client_logos():
+    """Kundloggor i jämn optisk storlek: varje logga får ungefär samma yta."""
+    from PIL import Image
+    lis = []
+    for name, path in CLIENTS:
+        w, h = Image.open(os.path.join(ROOT, path)).size
+        ratio = w / h
+        height = max(16, min(40, (1500 / ratio) ** 0.5))
+        width = min(118, height * ratio)
+        height = width / ratio
+        lis.append(f'<li><img class="lg cl" src="{asset(path)}" alt="{e(name)}" width="{round(width)}" height="{round(height)}" loading="lazy"></li>')
+    return '<ul class="logos clients">' + "".join(lis) + "</ul>"
+
+
 def person_schema():
     return {
         "@type": "Person", "@id": SITE + "/#person",
@@ -162,7 +185,7 @@ def tile(f, big=False):
     else:
         open_ = f'<button class="tile" type="button" data-play="{f["p"]}:{f["id"]}" data-title="{title} · {e(f["s"])}">'
         close, act = "</button>", "&#9654; PLAY"
-    return (f'{open_}<div class="frame"><img src="{f["img"]}" alt="Still from {title}" loading="lazy">'
+    return (f'{open_}<div class="frame"><img src="{src(f["img"])}" alt="Still from {title}" loading="lazy">'
             f'<span class="act">{act}</span></div><div class="meta">{title}<small>{e(f["s"])}</small></div>{close}')
 
 
@@ -196,7 +219,7 @@ def home():
     for g in GENRES:
         if g["key"] == "vp":
             right = f"""<a class="postcard" href="{url('/post/' + VP_POST['slug'])}">
-  <div class="frame"><img src="{VP_POST['img']}" alt="LED volume at Stockholm VP Studio" loading="lazy"></div>
+  <div class="frame"><img src="{src(VP_POST['img'])}" alt="LED volume at Stockholm VP Studio" loading="lazy"></div>
   <div class="txt"><p class="label-sm">From the blog</p><h3>{e(VP_POST['title'])}</h3><p>An honest assessment of what an LED volume delivers on set, and where it doesn't fit.</p><span class="tlink">Read the article</span></div>
 </a>"""
         else:
@@ -228,7 +251,7 @@ def home():
 
 <section class="logo-row" aria-label="Clients"><div class="wrap">
   <p class="label-sm">Trusted by</p>
-  {logo_list(CLIENTS)}
+  {client_logos()}
 </div></section>
 
 <div id="work">{''.join(blocks)}</div>
@@ -299,7 +322,7 @@ def drama():
                     for h, ps in DRAMA_SECTIONS)
     q = QUOTES[1]
     others = "".join(f'<li><a href="{url(g["href"])}">{e(g["name"])}</a></li>' for g in GENRES if g["key"] != "drama")
-    body = f"""{head(title, desc, path, first['img'], schema)}
+    body = f"""{head(title, desc, path, abs_url(first['img']), schema)}
 <body class="page">{header(path)}
 <main id="main">
   <div class="wrap">
@@ -309,7 +332,7 @@ def drama():
       <p class="intro">Every script asks for its own visual language. My job is to find it, and to make sure the image serves the emotional core of the story.</p>
     </header>
     <button class="feature" type="button" data-play="vimeo:{first['id']}" data-title="{e(first['t'])} · {e(first['s'])}">
-      <img src="{first['img']}" alt="Still from {e(first['t'])}">
+      <img src="{src(first['img'])}" alt="Still from {e(first['t'])}">
       <span class="cap"><span><b>{e(first['t'])}</b><small>{e(first['s'])}</small></span><span class="pill">{PLAY}Play scene</span></span>
     </button>
     <div class="films"><div class="tiles">{''.join(tile(f) for f in rest)}</div></div>
@@ -339,13 +362,10 @@ def vp_post():
     path = "/post/" + VP_POST["slug"]
     title = VP_POST["title"]
     desc = "A cinematographer's honest assessment of Virtual Production after testing an LED volume: what ICVFX delivers on set, and where it doesn't fit."
-    imgs = {k: wix(k, 1600) for k in [
-        "f828c5_fdb75f89757b48a6a4f9bdc027be2090~mv2.jpg", "f828c5_1a001a1f40574ea0990535ceb79d1e53~mv2.jpg",
-        "f828c5_7254b8074b8544319812195a0ea984f2~mv2.jpg", "f828c5_c0e145946c5442348f85e12eae9e6741~mv2.jpg"]}
-    k = list(imgs.values())
+    k = [asset("media/img/vp-0%d.jpg" % i) for i in (1, 2, 3, 4)]
     schema = [person_schema(), org_schema(),
               {"@type": "BlogPosting", "@id": SITE + path + "#article", "headline": title, "description": desc,
-               "image": [VP_POST["img"]], "datePublished": "2026-08-18", "dateModified": "2026-10-08",
+               "image": [abs_url(VP_POST["img"])], "datePublished": "2026-08-18", "dateModified": "2026-10-08",
                "author": {"@id": SITE + "/#person"}, "publisher": {"@id": SITE + "/#person"},
                "mainEntityOfPage": SITE + path, "inLanguage": "en-GB",
                "about": ["Virtual Production", "LED volume", "In-camera VFX", "Cinematography"]},
@@ -380,7 +400,7 @@ def vp_post():
         '<p class="credits">Thanks to Stockholm VP Studio, Storyline, and Michael Petersen, FSF, for behind-the-scenes footage and stills.</p>',
         f'<div class="author"><img src="{asset("media/portrait.jpg")}" alt="" width="72" height="72" loading="lazy"><div><b>{NAME_FULL}</b><span>Director of Photography. {LOCATION}.</span></div></div>',
     ])
-    body = f"""{head(title, desc, path, VP_POST['img'], schema, og_type='article')}
+    body = f"""{head(title, desc, path, abs_url(VP_POST['img']), schema, og_type='article')}
 <body class="page">{header()}
 <main id="main">
   <div class="wrap">
@@ -391,7 +411,7 @@ def vp_post():
       <p class="byline">By <b>{NAME_FULL}</b> · Published 18 August 2026 · Updated 8 October 2026 · 6 min read</p>
     </header>
   </div>
-  <div class="wrap article-hero"><img src="{VP_POST['img']}" alt="LED volume at Stockholm VP Studio"></div>
+  <div class="wrap article-hero"><img src="{src(VP_POST['img'])}" alt="LED volume at Stockholm VP Studio"></div>
   <article class="article"><div class="wrap"><div class="body">{article}</div></div></article>
   <nav class="other" aria-label="Related"><div class="wrap"><p class="label-sm">Related</p><ul>
     <li><a href="{url('/virtualproduction-cinematography')}">Virtual Production</a></li>
