@@ -112,3 +112,25 @@ GEAR = [
     ("RED Digital Cinema", "media/logos/red-badge.png", 66, "badge"),
     ("Canon Cinema EOS", "media/logos/canon-cinema-eos.png", 46, "mono"),
 ]
+
+# FAQ från /projects på Wix-sidan (flyttas till /cinematography-process). Texten är oförändrad.
+FAQ = [
+    ("What is the role of a Director of Photography (DoP) in pre-production?", "In pre-production, a DoP collaborates with the director to analyze the script, break down visual storytelling elements, and plan the visual look of the film."),
+    ("How does script analysis contribute to visual storytelling?", "Script analysis helps translate written words into visual concepts, determining camera angles, lighting, and composition for each scene."),
+    ("Why is collaboration with the art director crucial in pre-production?", "Collaborating with the art director ensures sets, props, and set decoration align with the visual narrative, enhancing the overall storytelling."),
+    ("What is the significance of location recce in the pre-production phase?", "Location recce involves identifying ideal settings that align with the director's vision, contributing to the visual cohesion of the film."),
+    ("How do test shoots and technical reconnaissance contribute to pre-production?", "Test shoots and technical reconnaissance fine-tune camera and lighting techniques, ensuring every detail aligns with the script's visual requirements."),
+    ("What value does a DoP bring to a film production?", "A skilled DoP adds value by bringing the project vision to life with technical expertise, reducing risk, and ensuring a smooth production process."),
+    ("How does a DoP collaborate with the camera crew during pre-production?", "A DoP collaborates closely with the camera crew, discussing specific needs such as camera equipment and grip for unique setups."),
+    ("What key responsibilities does a DoP handle on set during production?", "On set, a DoP oversees lighting, camera work, and ensures the director's vision is translated into visuals that convey the story's emotions and themes."),
+    ("How can a DoP prevent expensive mistakes during production?", "With years of experience, a DoP can spot and address potential issues early, saving time, money, and ensuring a smoother production process."),
+    ("What role does a DoP play in post-production?", "In post-production, a DoP contributes to the color grading process, shaping the film's visual narrative through fine-tuning colors, moods, and atmospheres."),
+    ("How does a DoP collaborate with visual effects (SFX) teams in post-production?", "A DoP collaborates with SFX teams to enhance scenes or add surreal elements, extending their influence into the realm of visual effects."),
+    ("How does a DoP collaborate with the entire team during production?", "A DoP is not just the visionary behind the lens but also the immediate point of contact for the entire team, ensuring effective communication and seamless collaboration."),
+]
+
+# Omdirigeringar (301) från gamla Wix-adresser. Fylls på när platshållarinlägget får ny adress.
+REDIRECTS = [
+    ("/projects", "/cinematography-process"),
+    ("/copy-of-terms-and-conditions", "/privacypolicy"),
+]

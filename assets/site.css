@@ -260,3 +260,33 @@ footer nav { display: flex; flex-wrap: wrap; gap: 8px 20px; } footer nav a:hover
   .hero-copy .wrap { padding-left: var(--gutter); }
   .gtoggle { display: none; }
 }
+
+/* Bloggindex */
+.post-list { list-style: none; margin: 0 0 clamp(60px, 8vw, 110px); padding: 0; display: grid; gap: 22px; }
+.post-list .postcard h2 { font-size: clamp(20px, 2.2vw, 28px); line-height: 1.2; }
+.post-list .postcard .frame { aspect-ratio: 16/10; }
+
+/* Textsidor och inlägg: listor, citat, video, bildtexter */
+.article ul { margin: 0 0 20px; padding-left: 22px; } .article li { margin-bottom: 8px; font-size: 18px; line-height: 1.7; color: rgba(241,236,230,.86); }
+.article h3 { font-size: clamp(20px, 2.2vw, 26px); line-height: 1.25; margin: 36px 0 12px; }
+.article blockquote { margin: 32px 0; padding-left: 20px; border-left: 2px solid var(--copper); font: 300 clamp(20px, 2.4vw, 26px)/1.4 var(--head); color: var(--ink); }
+.article a:not(.tlink) { color: var(--copper-hi); text-decoration: underline; text-underline-offset: 3px; }
+.article figcaption { margin-top: 10px; font-size: 14px; color: var(--mute); }
+.textpage { padding-top: 0; }
+.video-embed { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; aspect-ratio: 16/9; margin: 36px 0; background: var(--panel); border: 1px solid var(--line); cursor: pointer;
+  font: 400 13px/1 var(--head); letter-spacing: .18em; text-transform: uppercase; color: var(--ink); }
+.video-embed svg { width: 14px; height: 16px; fill: var(--copper); } .video-embed:hover { border-color: var(--copper); }
+.feature.still { cursor: default; } .feature.still img { filter: grayscale(1) contrast(1.06); } .feature.still:hover img { transform: none; }
+
+/* FAQ */
+.faq { margin-top: 56px; border-top: 1px solid var(--line); }
+.faq h2 { margin-top: 40px; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { cursor: pointer; padding: 18px 28px 18px 0; position: relative; list-style: none; font: 400 18px/1.4 var(--head); color: var(--ink); }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 0; top: 16px; color: var(--copper); font-size: 22px; }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { margin: 0 0 18px; }
+
+/* Alla kunder på branded-sidan */
+.clients-all { border-top: 1px solid var(--line); }

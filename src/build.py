@@ -49,11 +49,11 @@ def abs_url(p):
     return p if p.startswith("http") else SITE + "/" + p
 
 
-def client_logos():
+def client_logos(items=None):
     """Kundloggor i jämn optisk storlek: varje logga får ungefär samma yta."""
     from PIL import Image
     lis = []
-    for name, path in CLIENTS:
+    for name, path in (items or CLIENTS):
         w, h = Image.open(os.path.join(ROOT, path)).size
         ratio = w / h
         height = max(18, min(40, (1900 / ratio) ** 0.5))
@@ -427,9 +427,9 @@ def vp_post():
 
 
 # ---------------------------------------------------------------- Filer för sökmotorer och AI
-def seo_files():
-    pages = [("/", "2026-11-26"), ("/drama-cinematography", "2026-11-26"), ("/post/" + VP_POST["slug"], "2026-10-08")]
-    urls = "".join(f"<url><loc>{SITE}{'/' if p == '/' else p}</loc><lastmod>{d}</lastmod></url>" for p, d in pages)
+def seo_files(pages, articles):
+    """pages: lista av (adress, senast ändrad). articles: lista av (titel, adress)."""
+    urls = "".join(f"<url><loc>{SITE}{'/' if p == '/' else p}</loc>" + (f"<lastmod>{d}</lastmod>" if d else "") + "</url>" for p, d in pages)
     with open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8") as fh:
         fh.write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
     robots = ("User-agent: *\nAllow: /\n\n# AI-tjänster välkomna\nUser-agent: GPTBot\nAllow: /\nUser-agent: OAI-SearchBot\nAllow: /\n"
@@ -438,6 +438,7 @@ def seo_files():
     with open(os.path.join(ROOT, "robots.txt"), "w", encoding="utf-8") as fh:
         fh.write(robots)
     genres = "\n".join(f"- [{g['name']}]({SITE}{g['href']}): {g['blurb']}" for g in GENRES)
+    arts = "\n".join(f"- [{t}]({SITE}{p})" for t, p in articles)
     llms = f"""# {NAME_FULL}
 
 > Cinematographer and director of photography (DoP) for drama, documentary, commercials and virtual production. Member of FSF, the Swedish Society of Cinematographers. Runs Nordic Light Cinematography AB. {LOCATION}.
@@ -446,9 +447,10 @@ Contact: {EMAIL}, {PHONE}
 
 ## Work
 {genres}
+- [Cinematography process]({SITE}/cinematography-process): how I work from script to grade, with FAQ.
 
 ## Articles
-- [{VP_POST['title']}]({SITE}/post/{VP_POST['slug']}): what an LED volume delivers on set, and where it doesn't fit.
+{arts}
 
 ## Profiles
 """ + "\n".join(f"- [{n}]({u})" for n, u in SOCIAL) + "\n"
@@ -457,6 +459,65 @@ Contact: {EMAIL}, {PHONE}
     print("skrev sitemap.xml, robots.txt, llms.txt")
 
 
+PLACEHOLDER_SLUG = "/post/your-title-what-s-your-blog-about"
+GENRE_PAGES = {"/documentary-cinematography": "doc", "/branded-cinematography": "branded", "/virtualproduction-cinematography": "vp"}
+TEXT_PAGES = ["/cinematography-process", "/content-ai", "/ai-branding-visuals", "/downloads", "/termsandconditions", "/privacypolicy"]
+
+
+def slugify(t):
+    import re
+    return re.sub(r"[^a-z0-9]+", "-", t.lower()).strip("-")[:80]
+
+
+def run():
+    import pages as P
+    wix = P.load_all()
+    renames = []
+    if PLACEHOLDER_SLUG in wix:
+        item = dict(wix.pop(PLACEHOLDER_SLUG))
+        new = "/post/" + slugify(P.page_title(item))
+        item["path"] = new
+        wix[new] = item
+        renames.append((PLACEHOLDER_SLUG, new))
+    vp_path = "/post/" + VP_POST["slug"]
+    posts = [p for k, p in wix.items() if k.startswith("/post/")]
+    BUILT.update(wix.keys())
+    if posts:
+        BUILT.add("/blog")
+    BUILT.update(old for old, _ in REDIRECTS + renames)
+
+    home(); drama(); vp_post()
+    for path, key in GENRE_PAGES.items():
+        if path in wix:
+            P.genre_page(wix[path], key)
+    for path in TEXT_PAGES:
+        if path not in wix:
+            continue
+        if path == "/cinematography-process":
+            faq, sch = P.faq_html_and_schema()
+            P.text_page(wix[path], extra_html=faq, extra_schema=[sch])
+        else:
+            P.text_page(wix[path])
+    for p in posts:
+        if p["path"] != vp_path:
+            P.post_page(p)
+    if posts:
+        P.blog_index(posts)
+    P.redirect_files({"__renames__": renames})
+
+    today = "2026-11-27"
+    sm = [("/", today), ("/drama-cinematography", today)]
+    sm += [(k, today) for k in GENRE_PAGES if k in wix] + [(k, today) for k in TEXT_PAGES if k in wix]
+    if posts:
+        sm.append(("/blog", today))
+    sm += [(p["path"], (p.get("mod") or p.get("pub") or "")[:10]) for p in posts]
+    if vp_path not in wix:
+        sm.append((vp_path, "2026-10-08"))
+    arts = [(P.page_title(p), p["path"]) for p in sorted(posts, key=lambda x: x.get("pub", ""), reverse=True)] or [(VP_POST["title"], vp_path)]
+    seo_files(sm, arts)
+    print("klart,", "riktiga sajten" if LIVE else "testadressen", f"({len(wix)} sidor från Wix)")
+
+
 if __name__ == "__main__":
-    home(); drama(); vp_post(); seo_files()
-    print("klart,", "riktiga sajten" if LIVE else "testadressen")
+    import importlib
+    importlib.import_module("build").run()
