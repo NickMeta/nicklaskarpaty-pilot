@@ -95,6 +95,10 @@ p { margin: 0; }
 .logos.clients li { min-height: 40px; }
 .lg.cl { height: auto; max-height: 40px; filter: none; opacity: .55; }
 .lg.cl:hover { opacity: .95; }
+.logos.gear { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 30px 40px; }
+@media (max-width: 759px) { .logos.gear { justify-content: center; gap: 26px 34px; } }
+.lg.badge { filter: grayscale(1) contrast(1.05); opacity: .62; }
+.lg.badge:hover { opacity: .95; }
 .lg.jpg { filter: grayscale(1) invert(1) contrast(1.7) brightness(1.5); mix-blend-mode: screen; }
 .lgtxt { font: 400 14px/1 var(--head); letter-spacing: .24em; text-transform: uppercase; color: rgba(241,236,230,.55); }
 

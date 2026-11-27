@@ -91,8 +91,8 @@ QUOTES = [
 WM = "https://upload.wikimedia.org/wikipedia/"
 # Startsidan: bara de största namnen. Officiella loggor (Wikimedia Commons), gjorda vita, i media/logos/top/.
 CLIENTS = [(n, "media/logos/top/" + f + ".png") for n, f in [
-    ("SVT", "svt"), ("BBC", "bbc"), ("FOX", "fox"), ("ICA", "ica"),
-    ("Google", "google"), ("Spotify", "spotify"), ("Klarna", "klarna"), ("Polestar", "polestar"),
+    ("SVT", "svt"), ("BBC", "bbc"), ("FOX", "fox"), ("Google", "google"),
+    ("Spotify", "spotify"), ("Klarna", "klarna"), ("Polestar", "polestar"), ("ICA", "ica"),
 ]]
 
 # Hela kundlistan från Wix-sidan, till branded-sidan. Utklippta ur skärmdumpen, byts mot riktiga loggfiler.
@@ -104,9 +104,11 @@ ALL_CLIENTS = [(n, "media/logos/" + f + ".png") for n, f in [
     ("H&M", "hm"), ("Uniqlo", "uniqlo"), ("Apoteket", "apoteket"), ("Klarna", "klarna"),
     ("AJ", "aj"), ("Reach for Change", "reach-for-change"), ("Schweppes", "schweppes"), ("Stena Line", "stena-line"),
 ]]
+# Kamerasystem längst ned. Typ: "mono" görs vit, "badge" visas i gråskala med sina detaljer.
 GEAR = [
-    ("ARRI", WM + "commons/d/de/Arri_logo.svg", 30, False),
-    ("Panavision", WM + "commons/7/73/Panavision_logo.svg", 46, False),
-    ("Sony CineAlta", WM + "commons/e/e4/Sony_CineAlta_logo_V3.png", 64, False),
-    ("RED Digital Cinema", WM + "en/3/36/Red-Camera-Logo.jpeg", 70, True),
+    ("ARRI", "media/logos/arri.png", 30, "mono"),
+    ("Panavision", "media/logos/panavision.png", 40, "mono"),
+    ("Sony CineAlta", WM + "commons/e/e4/Sony_CineAlta_logo_V3.png", 64, "mono"),
+    ("RED Digital Cinema", "media/logos/red-badge.png", 66, "badge"),
+    ("Canon Cinema EOS", "media/logos/canon-cinema-eos.png", 46, "mono"),
 ]

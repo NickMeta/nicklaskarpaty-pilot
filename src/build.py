@@ -139,13 +139,12 @@ def header(current=""):
 </div></header>"""
 
 
-def logo_list(items, four=False):
+def gear_logos():
     lis = []
-    for it in items:
-        name, src, h = it[0], it[1], it[2]
-        jpg = " jpg" if len(it) > 3 and it[3] else ""
-        lis.append(f'<li><img class="lg{jpg}" style="--h:{h}px" src="{src}" alt="{e(name)}" loading="lazy"></li>')
-    return f'<ul class="logos{" four" if four else ""}">' + "".join(lis) + "</ul>"
+    for name, path, h, kind in GEAR:
+        cls = "lg badge" if kind == "badge" else "lg"
+        lis.append(f'<li><img class="{cls}" style="--h:{h}px" src="{src(path)}" alt="{e(name)}" loading="lazy"></li>')
+    return '<ul class="logos gear">' + "".join(lis) + "</ul>"
 
 
 def footer():
@@ -161,7 +160,7 @@ def footer():
   </div>
   <div class="logo-row" aria-label="Camera systems"><div class="wrap">
     <p class="label-sm">Shooting on</p>
-    {logo_list(GEAR, four=True)}
+    {gear_logos()}
   </div></div>
 </section>
 <footer><div class="wrap">
