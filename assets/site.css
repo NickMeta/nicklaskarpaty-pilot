@@ -46,6 +46,7 @@ p { margin: 0; }
 
 /* Hero med Alexa 35-ramguide */
 .hero { position: relative; height: 100svh; min-height: 560px; overflow: hidden; background: #000; }
+.hero .stage { position: absolute; inset: 0; }
 .hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.06) brightness(.82); }
 .guide { position: absolute; inset: 0; pointer-events: none; color: rgba(241,236,230,.85); font: 400 11px/1 var(--mono); letter-spacing: .06em; }
 .g-top { position: absolute; inset: 0 0 auto; height: 22%; background: linear-gradient(180deg, rgba(0,0,0,.65), transparent); }
@@ -154,8 +155,8 @@ p { margin: 0; }
 /* About */
 .about { border-bottom: 1px solid var(--line); padding-block: clamp(64px, 8vw, 110px); }
 .about .wrap { display: grid; grid-template-columns: 1fr; gap: 44px; }
-@media (min-width: 900px) { .about .wrap { grid-template-columns: 5fr 7fr; gap: 80px; align-items: center; } }
-.about img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+@media (min-width: 900px) { .about .wrap { grid-template-columns: minmax(0, 340px) 1fr; gap: 72px; align-items: center; } }
+.about img.portrait { width: 100%; height: auto; max-width: 340px; aspect-ratio: 4/5; object-fit: cover; object-position: 50% 30%; }
 .about h2 { font-size: clamp(30px, 3.6vw, 46px); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 24px; }
 .about .lead { font: 300 clamp(22px, 3vw, 32px)/1.25 var(--head); color: var(--ink); max-width: 26ch; margin-bottom: 20px; }
 .about p { max-width: 58ch; margin-bottom: 18px; color: rgba(241,236,230,.82); }
@@ -235,3 +236,23 @@ footer nav { display: flex; flex-wrap: wrap; gap: 8px 20px; } footer nav a:hover
 .author b { display: block; font: 400 16px var(--head); color: var(--ink); letter-spacing: .04em; } .author span { font-size: 14px; }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } html { scroll-behavior: auto; } }
+
+/* Spelknapp om webbläsaren stoppar automatisk uppspelning (t.ex. strömsparläge på iPhone) */
+.vplay { position: absolute; z-index: 5; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; border: 1px solid var(--copper); background: rgba(0,0,0,.5); color: var(--ink); cursor: pointer; display: grid; place-items: center; }
+.vplay svg { width: 16px; height: 18px; fill: currentColor; margin-left: 3px; }
+.vplay:hover { background: var(--copper); color: #000; }
+
+/* Mobil: filmen i bredformat med ramguide, namnet under. Ingen beskuren 9:16. */
+@media (max-width: 760px) {
+  .hero { height: auto; min-height: 0; padding-top: 76px; display: flex; flex-direction: column; }
+  .hero .stage { position: relative; inset: auto; width: 100%; aspect-ratio: 16/9; overflow: hidden; }
+  .g-mask { box-shadow: 0 0 0 100vmax rgba(0,0,0,.62); }
+  .g-frame { top: 13%; bottom: 13%; left: 4%; right: 4%; }
+  .g-frame i { width: 12px; height: 12px; }
+  .hud { padding: 0 8px; left: 4%; right: 4%; font-size: 8.5px; }
+  .hud.t { top: calc(13% + 6px); } .hud .tc { font-size: 9px; }
+  .g-top, .g-bot, .g-cross { display: none; }
+  .hero-copy { position: static; padding: 28px 0 40px; }
+  .hero-copy .wrap { padding-left: var(--gutter); }
+  .gtoggle { display: none; }
+}

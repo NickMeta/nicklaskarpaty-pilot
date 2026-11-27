@@ -56,8 +56,8 @@ def client_logos():
     for name, path in CLIENTS:
         w, h = Image.open(os.path.join(ROOT, path)).size
         ratio = w / h
-        height = max(16, min(40, (1500 / ratio) ** 0.5))
-        width = min(118, height * ratio)
+        height = max(18, min(40, (1900 / ratio) ** 0.5))
+        width = min(124, height * ratio)
         height = width / ratio
         lis.append(f'<li><img class="lg cl" src="{asset(path)}" alt="{e(name)}" width="{round(width)}" height="{round(height)}" loading="lazy"></li>')
     return '<ul class="logos clients">' + "".join(lis) + "</ul>"
@@ -134,7 +134,7 @@ def header(current=""):
   <a class="brand" href="{url('/')}" aria-label="{NAME_FULL}, home"><img src="{asset('media/nk-logo.png')}" alt="{NAME_FULL}" width="704" height="299"></a>
   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
   <nav class="nav" id="nav" aria-label="Primary">
-    {a('Drama', '/drama-cinematography')}{a('Documentary', '/documentary-cinematography')}{a('Branded', '/branded-cinematography')}{a('VP', '/virtualproduction-cinematography')}{a('About', '/#about')}{a('Contact', '/#contact', 'cta')}
+    {a('Drama', '/drama-cinematography')}{a('Documentary', '/documentary-cinematography')}{a('Branded', '/branded-cinematography')}{a('VP', '/virtualproduction-cinematography')}{a('Blog', '/blog')}{a('About', '/#about')}{a('Contact', '/#contact', 'cta')}
   </nav>
 </div></header>"""
 
@@ -233,12 +233,15 @@ def home():
 <body>{header()}
 <main id="main">
 <section class="hero" aria-label="Showreel">
-  <video id="hero-video" autoplay muted loop playsinline preload="metadata" poster="{asset('media/hero-poster.jpg')}"><source src="{asset('media/hero.mp4')}" type="video/mp4"></video>
+  <div class="stage">
+  <video id="hero-video" autoplay muted loop playsinline preload="auto" poster="{asset('media/hero-poster.jpg')}"><source src="{asset('media/hero.mp4')}" type="video/mp4"></video>
+  <button class="vplay" id="vplay" type="button" hidden aria-label="Play background film">{PLAY}</button>
   <div class="guide" id="guide" aria-hidden="true">
     <div class="g-top"></div><div class="g-bot"></div><div class="g-mask"></div>
     <div class="g-frame"><i></i><i></i><i></i><i></i></div><div class="g-cross"></div>
     <div class="hud t"><span><b>ARRI ALEXA 35</b></span><span>4.6K 3:2 · S35</span><span>25 fps · 180°</span><span>ISO 800 · 5600 K</span><span class="rec">REC <span class="tc" id="tc">00:00:00:00</span></span></div>
     <div class="hud b"><span class="opt">2.39:1</span><span>T2.8 · 35 mm</span><span class="opt">LUT: NLC</span></div>
+  </div>
   </div>
   <div class="hero-copy"><div class="wrap">
     <p class="role">Cinematographer · Director of Photography</p>
@@ -257,22 +260,9 @@ def home():
 <div id="work">{''.join(blocks)}</div>
 {quotes_row()}
 
-<section class="craft" aria-labelledby="craft-h"><div class="wrap">
-  <div>
-    <h2 id="craft-h">From sensor to screen</h2>
-    <p>The look is decided before the camera rolls: lens, light, exposure and a show LUT built for the story. The grade finishes what was planned on set.</p>
-    <p class="note">Test image. Replaced with a real LOG frame and its final grade.</p>
-  </div>
-  <div class="wipe">
-    <img src="{asset('media/grade-flat.jpg')}" alt="The frame as recorded in LOG, before grading" loading="lazy">
-    <img class="after" src="{asset('media/grade-graded.jpg')}" alt="The same frame after the final grade" loading="lazy">
-    <span class="bar"></span><span class="tag l">LOG</span><span class="tag r">GRADE</span>
-    <input id="wr" type="range" min="0" max="100" value="50" aria-label="Compare the LOG image with the final grade">
-  </div>
-</div></section>
 
 <section class="about" id="about" aria-labelledby="about-h"><div class="wrap">
-  <img src="{asset('media/portrait.jpg')}" alt="Portrait of Nicklas Karpaty, FSF" width="1200" height="1200" loading="lazy">
+  <img class="portrait" src="{asset('media/portrait.jpg')}" alt="Portrait of Nicklas Karpaty, FSF" width="1200" height="1200" loading="lazy">
   <div>
     <h2 id="about-h">About</h2>
     <p class="lead">Storytelling dictates the language.</p>
@@ -339,6 +329,20 @@ def drama():
   </div>
 
   <div class="prose"><div class="wrap">{prose}</div></div>
+
+  <section class="craft" aria-labelledby="craft-h"><div class="wrap">
+  <div>
+    <h2 id="craft-h">From sensor to screen</h2>
+    <p>The look is decided before the camera rolls: lens, light, exposure and a show LUT built for the story. The grade finishes what was planned on set.</p>
+    <p class="note">Test image. Replaced with a real LOG frame and its final grade.</p>
+  </div>
+  <div class="wipe">
+    <img src="{asset('media/grade-flat.jpg')}" alt="The frame as recorded in LOG, before grading" loading="lazy">
+    <img class="after" src="{asset('media/grade-graded.jpg')}" alt="The same frame after the final grade" loading="lazy">
+    <span class="bar"></span><span class="tag l">LOG</span><span class="tag r">GRADE</span>
+    <input id="wr" type="range" min="0" max="100" value="50" aria-label="Compare the LOG image with the final grade">
+  </div>
+</div></section>
 
   <figure class="pullquote" style="margin:0"><div class="wrap">
     <blockquote>{e(q[0])}</blockquote>

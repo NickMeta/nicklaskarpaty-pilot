@@ -59,7 +59,17 @@
   // Ramguide och tidkod
   var v = $('#hero-video'), tc = $('#tc'), gd = $('#guide'), gt = $('#gt');
   if (v) {
-    if (reduce) { v.pause(); v.removeAttribute('autoplay'); }
+    var vb = $('#vplay');
+    var showBtn = function () { if (vb) vb.hidden = false; };
+    if (vb) vb.addEventListener('click', function () { v.play().then(function () { vb.hidden = true; }).catch(function () {}); });
+    if (reduce) { v.pause(); v.removeAttribute('autoplay'); showBtn(); }
+    else {
+      v.muted = true;
+      var p = v.play();
+      if (p && p.catch) p.catch(showBtn);
+      // Om filmen fortfarande står still efter några sekunder visas knappen
+      setTimeout(function () { if (v.paused) showBtn(); }, 2500);
+    }
     var pad = function (n) { return (n < 10 ? '0' : '') + n; };
     var tick = function () { var t = v.currentTime || 0; if (tc) tc.textContent = pad(Math.floor(t / 3600)) + ':' + pad(Math.floor(t / 60) % 60) + ':' + pad(Math.floor(t) % 60) + ':' + pad(Math.floor((t % 1) * 25)); if (!v.paused) requestAnimationFrame(tick); };
     v.addEventListener('play', tick); v.addEventListener('timeupdate', function () { if (v.paused) tick(); });

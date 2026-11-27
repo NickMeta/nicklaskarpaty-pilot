@@ -89,8 +89,14 @@ QUOTES = [
 
 # Loggor länkas från Wikimedia Commons i piloten. Inför lansering: egna kopior i media/logos/.
 WM = "https://upload.wikimedia.org/wikipedia/"
-# Kundloggor från Wix-sidan, utklippta till vita PNG-filer i media/logos/.
-CLIENTS = [(n, "media/logos/" + f + ".png") for n, f in [
+# Startsidan: bara de största namnen. Officiella loggor (Wikimedia Commons), gjorda vita, i media/logos/top/.
+CLIENTS = [(n, "media/logos/top/" + f + ".png") for n, f in [
+    ("SVT", "svt"), ("BBC", "bbc"), ("FOX", "fox"), ("ICA", "ica"),
+    ("Google", "google"), ("Spotify", "spotify"), ("Klarna", "klarna"), ("Polestar", "polestar"),
+]]
+
+# Hela kundlistan från Wix-sidan, till branded-sidan. Utklippta ur skärmdumpen, byts mot riktiga loggfiler.
+ALL_CLIENTS = [(n, "media/logos/" + f + ".png") for n, f in [
     ("Google", "google"), ("Liseberg", "liseberg"), ("Polestar", "polestar"), ("Ascom", "ascom"),
     ("IKEA", "ikea"), ("Pinchos", "pinchos"), ("Spotify", "spotify"), ("BBC", "bbc"),
     ("ICA", "ica"), ("AstraZeneca", "astrazeneca"), ("Zeekr", "zeekr"), ("Lynk & Co", "lynk-co"),
